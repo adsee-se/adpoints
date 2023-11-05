@@ -18,7 +18,7 @@ const Home = async ({ items }: Items) => {
   const Items = await fetchItems();
   return (
     <main>
-      <div>ADPOINTS DEVELOPMENT START</div>
+      <div className="font-bold underline">ADPOINTS DEVELOPMENT START</div>
       {Items.map((item) => (
         <p>{item.name}</p>
       ))}
