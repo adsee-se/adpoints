@@ -19,10 +19,9 @@ const Home = async ({ items }: Items) => {
   return (
     <main>
       <div className="font-bold underline">ADPOINTS DEVELOPMENT START</div>
-      {/* Itemでエラーが出るので一時コメントアウト */}
-      {/* {Items.map((item) => (
+      {Items.map((item) => (
         <p>{item.name}</p>
-      ))} */}
+      ))}
     </main>
   );
 };
