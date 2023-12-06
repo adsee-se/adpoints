@@ -8,8 +8,10 @@ interface Question {
   point?: number;
   category?: string;
   status?: number;
-  created_at?: string;
+  created_at?: Date;
   created_by?: string;
+  updated_at?: Date;
+  updated_by?: string;
 }
 
 const Answer = async () => {

@@ -12,8 +12,10 @@ type Question = {
   point?: number;
   category?: string;
   status?: number;
-  created_at?: string;
+  created_at?: Date;
   created_by?: string;
+  updated_at?: Date;
+  updated_by?: string;
 };
 
 interface Props {
@@ -31,6 +33,8 @@ function AnswerCardParent(props: Props) {
           point={question.point}
           category={question.category}
           status={question.status}
+          createdAt={question.created_at}
+          updatedAt={question.updated_at}
         ></AnswerCard>
       ))}
     </OuterDiv>

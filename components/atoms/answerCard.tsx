@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode } from "react";
+import React from "react";
 import { styled } from "@mui/material/styles";
 
 interface Props {
@@ -9,8 +9,10 @@ interface Props {
   point?: number;
   status?: number;
   category?: string;
-  createdAt?: string;
+  createdAt?: Date;
   createdBy?: string;
+  updatedAt?: Date;
+  updatedBy?: string;
 }
 
 const YET_REPLY = 0;
@@ -18,8 +20,38 @@ const ALREDY_REPLY = 1;
 const OTHER = 2;
 
 function AnswerCard(props: Props) {
+  const returnTimeSecond =
+    new Date(
+      props.updatedAt ? props.updatedAt : props.createdAt ? props.createdAt : ""
+    ).getTime() / 1000;
+  const nowTimeSecond = Date.now() / 1000;
+  const timeDiff = nowTimeSecond - returnTimeSecond;
+  const timeWithinText =
+    timeDiff < 60
+      ? "1分以内"
+      : timeDiff < 60 * 5
+      ? "5分以内"
+      : timeDiff < 60 * 15
+      ? "15分以内"
+      : timeDiff < 60 * 30
+      ? "30分以内"
+      : timeDiff < 60 * 60
+      ? "１時間以内"
+      : timeDiff < 60 * 60 * 3
+      ? "３時間以内"
+      : timeDiff < 60 * 60 * 5
+      ? "５時間以内"
+      : timeDiff < 60 * 60 * 10
+      ? "10時間以内"
+      : timeDiff < 60 * 60 * 20
+      ? "20時間以内"
+      : timeDiff > 60 * 60 * 24
+      ? "1日以上前"
+      : "";
+
   return (
     <OuterFrame status={props.status} key={props.id}>
+      <TimeCounter>{timeWithinText}</TimeCounter>
       <QuestionTitle>{props.title}</QuestionTitle>
       <FlexFrame>
         <RequiredPoint status={props.status}>
@@ -55,7 +87,6 @@ const OuterFrame = styled("div")<Props>(({ status }) => ({
 
 const FlexFrame = styled("div")({
   display: `flex`,
-  isolation: `isolate`,
   flexDirection: `row`,
   justifyContent: `flex-start`,
   alignItems: `flex-start`,
@@ -76,7 +107,7 @@ const QuestionTitle = styled("p")({
   textTransform: `none`,
   width: `260.16px`,
   height: `27.09px`,
-  margin: `14px`,
+  margin: `5px 0 10px 20px`,
 });
 
 const AnswerLink = styled("a")<Props>(({ status }) => ({
@@ -118,6 +149,25 @@ const CategoryTitle = styled("p")({
   textTransform: `none`,
   width: `80px`,
   height: `15px`,
+});
+
+const TimeCounter = styled("p")({
+  textAlign: `left`,
+  whiteSpace: `pre-wrap`,
+  fontSynthesis: `none`,
+  color: `rgba(172, 172, 179, 1)`,
+  fontStyle: `normal`,
+  fontFamily: `Poppins`,
+  fontWeight: `500`,
+  fontSize: `10px`,
+  letterSpacing: `0px`,
+  textDecoration: `none`,
+  lineHeight: `12px`,
+  textTransform: `none`,
+  width: `80px`,
+  height: `15px`,
+  marginTop: `5px`,
+  marginLeft: `12px`,
 });
 
 const RequiredPoint = styled("p")<Props>(({ status }) => ({
