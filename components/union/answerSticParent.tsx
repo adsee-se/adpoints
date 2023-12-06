@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import AnswerCard from "../atoms/answerCard";
+import AnswerStic from "../atoms/answerStic";
 import { styled } from "@mui/material/styles";
 import { Question } from "@/types/Question";
 
@@ -13,7 +13,7 @@ function AnswerCardParent(props: Props) {
   return (
     <OuterDiv>
       {props.questions.map((question) => (
-        <AnswerCard
+        <AnswerStic
           key={question.id}
           id={question.id}
           title={question.title}
@@ -22,7 +22,7 @@ function AnswerCardParent(props: Props) {
           status={question.status}
           created_at={question.created_at}
           updated_at={question.updated_at}
-        ></AnswerCard>
+        ></AnswerStic>
       ))}
     </OuterDiv>
   );
