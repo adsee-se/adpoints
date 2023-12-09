@@ -17,6 +17,7 @@ const Header1: any = styled('div')({
   boxSizing: 'border-box',
   height: 'auto',
   width: 'fit-content',
+  zIndex: 100, // ハンバーガーメニューが開いた際に一番上に来るよう100を指定
 });
 
 const Header11: any = styled('div')({
@@ -64,12 +65,6 @@ const Content: any = styled('div')({
   flex: '1',
   margin: '0px',
 });
-
-
-
-export interface HeaderProps {
-};
-
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);

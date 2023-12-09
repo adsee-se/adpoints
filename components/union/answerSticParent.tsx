@@ -12,7 +12,8 @@ interface Props {
 function AnswerCardParent(props: Props) {
   return (
     <OuterDiv>
-      {props.questions.map((question) => (
+      {/* エラー回避のため、Object.valuesを使用 */}
+      {Object.values(props.questions).map((question) => (
         <AnswerStic
           key={question.id}
           id={question.id}

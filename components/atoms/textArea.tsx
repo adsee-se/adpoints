@@ -11,32 +11,30 @@ interface Props {
   name?: string;
   maxlength?: number;
   minlength?: number;
-  form?: any;
-  type: 'text' | 'password' | 'number' | 'checkbox' | 'radio' | 'file' | 'submit' | 'reset' | 'button';
-  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
-  onKeyPress?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLTextAreaElement>) => void;
+  onKeyPress?: (event: React.KeyboardEvent<HTMLTextAreaElement>) => void;
   onSubmit?: (value: string, event: React.FormEvent<HTMLFormElement>) => void;
   onChange?: (value: string) => void;
-  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onFocus?: (event: React.FocusEvent<HTMLTextAreaElement>) => void;
   onBlur?: (value: string) => void;
 }
 
-function Input(props: Props) {
+function TextArea(props: Props) {
 
   return (
-    <Input2 className={props.className} type={props.type} placeholder={props.placeholder}>
-    </Input2>
+    <TextArea2 className={props.className} placeholder={props.placeholder}>
+    </TextArea2>
   );
 }
 
-const Input2 = styled('input')({
+const TextArea2 = styled('textarea')({
   borderRadius: `4px`,
   display: `flex`,
   position: `relative`,
   isolation: `isolate`,
   flexDirection: `row`,
   width: '311px',
-  height: `46px`,
+  height: `280px`,
   justifyContent: `flex-start`,
   alignItems: `flex-start`,
   padding: `0px`,
@@ -61,4 +59,4 @@ const Input2 = styled('input')({
   },
 });
 
-export default Input;
+export default TextArea;
