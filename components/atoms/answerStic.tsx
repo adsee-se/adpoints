@@ -11,21 +11,27 @@ function AnswerStic(props: Question) {
   );
 
   return (
-    <SticFrame>
-      <SticTitle>{`ここにはユーザーのタイトルが...`}</SticTitle>
-      <TimeDisplay>{`1分以内`}</TimeDisplay>
+    <SticFrame status={props.status}>
+      <SticTitle>{props.title}</SticTitle>
+      <TimeDisplay>{timeWithinText}</TimeDisplay>
     </SticFrame>
   );
 }
 
-const SticFrame = styled("div")({
+const SticFrame = styled("div")<Question>(({ status }) => ({
   display: `flex`,
   width: "80%",
   height: `52px`,
   margin: `20px auto`,
-  border: `1px solid rgba(246, 161, 83, 1)`,
+  border: `1px solid ${
+    status === ALREDY_REPLY
+      ? "rgba(246, 161, 83, 1)"
+      : YET_REPLY
+      ? "rgba(172, 172, 179, 1)"
+      : "rgba(172, 172, 179, 1)"
+  }`,
   borderRadius: `10px`,
-});
+}));
 
 const SticTitle = styled("div")({
   color: `rgba(24, 33, 53, 1)`,
