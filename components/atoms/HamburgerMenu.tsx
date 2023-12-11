@@ -13,7 +13,7 @@ const HamburgerMenu1: any = styled('div')(() => ({
   display: 'flex',
   isolation: 'isolate',
   flexDirection: 'row',
-  height: '537px',
+  height: '590px', // コンテンツ部分がハンバーガーメニューで隠れる高さに指定
   justifyContent: 'flex-start',
   alignItems: 'flex-start',
   padding: '0px',
