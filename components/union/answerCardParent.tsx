@@ -3,7 +3,7 @@
 import React from "react";
 import AnswerCard from "../atoms/answerCard";
 import { styled } from "@mui/material/styles";
-import { Question } from "@/types/Question";
+import { Question } from "@/types/question";
 
 interface Props {
   questions: Question[];

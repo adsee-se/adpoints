@@ -4,7 +4,7 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 import { YET_REPLY, ALREDY_REPLY, OTHER } from "@/helpers/const";
 import { renderTimeWithinText } from "@/helpers/renderTimeWithinText";
-import { Question } from "@/types/Question";
+import { Question } from "@/types/question";
 
 function AnswerCard(props: Question) {
   const timeWithinText = renderTimeWithinText(

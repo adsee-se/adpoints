@@ -1,4 +1,4 @@
-import { Question } from "@/types/Question";
+import { Question } from "@/types/question";
 
 export const fetchQuestions = async (
   user_id: number = 3
