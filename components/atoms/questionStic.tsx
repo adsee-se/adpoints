@@ -4,7 +4,7 @@ import { YET_REPLY, ALREDY_REPLY, OTHER } from "@/helpers/const";
 import { renderTimeWithinText } from "@/helpers/renderTimeWithinText";
 import { Question } from "@/types/question";
 
-function AnswerStic(props: Question) {
+function QuestionStic(props: Question) {
   const timeWithinText = renderTimeWithinText(
     props.updated_at,
     props.created_at
@@ -56,4 +56,4 @@ const TimeDisplay = styled("div")({
   margin: `auto`,
 });
 
-export default AnswerStic;
+export default QuestionStic;

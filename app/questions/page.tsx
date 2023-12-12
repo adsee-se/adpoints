@@ -1,14 +1,14 @@
-import AnswerCardParent from "@/components/union/answerCardParent";
+import QuestionCardParent from "@/components/union/questionCardParent";
 import { fetchQuestions } from "@/fetchers/fetchQuestions";
 
-const Answer = async () => {
+const Question = async () => {
   const questions = await fetchQuestions();
-  
+
   return (
     <main>
-      <AnswerCardParent questions={questions} />
+      <QuestionCardParent questions={questions} />
     </main>
   );
 };
 
-export default Answer;
+export default Question;

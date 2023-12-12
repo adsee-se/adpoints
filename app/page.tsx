@@ -1,4 +1,4 @@
-import AnswerSticParent from "@/components/union/answerSticParent";
+import QuestionSticParent from "@/components/union/questionSticParent";
 import { fetchQuestions } from "@/fetchers/fetchQuestions";
 
 const Home = async () => {
@@ -6,7 +6,7 @@ const Home = async () => {
 
   return (
     <main>
-      <AnswerSticParent questions={questions} />
+      <QuestionSticParent questions={questions} />
     </main>
   );
 };

@@ -6,7 +6,7 @@ import { YET_REPLY, ALREDY_REPLY, OTHER } from "@/helpers/const";
 import { renderTimeWithinText } from "@/helpers/renderTimeWithinText";
 import { Question } from "@/types/question";
 
-function AnswerCard(props: Question) {
+function QuestionCard(props: Question) {
   const timeWithinText = renderTimeWithinText(
     props.updated_at,
     props.created_at
@@ -23,9 +23,9 @@ function AnswerCard(props: Question) {
             : "お見積もり中"}
         </RequiredPoint>
         <CategoryTitle>{props.category}</CategoryTitle>
-        <AnswerLink status={props.status}>
+        <QuestionLink status={props.status}>
           {props.point && props.point > 0 ? "回答を確認する" : "質問を確認する"}
-        </AnswerLink>
+        </QuestionLink>
       </FlexFrame>
     </OuterFrame>
   );
@@ -73,7 +73,7 @@ const QuestionTitle = styled("p")({
   margin: `5px 0 10px 20px`,
 });
 
-const AnswerLink = styled("a")<Question>(({ status }) => ({
+const QuestionLink = styled("a")<Question>(({ status }) => ({
   textAlign: `end`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
@@ -159,4 +159,4 @@ const RequiredPoint = styled("p")<Question>(({ status }) => ({
   margin: `0 14px`,
 }));
 
-export default AnswerCard;
+export default QuestionCard;
