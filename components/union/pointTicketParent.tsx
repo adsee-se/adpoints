@@ -21,6 +21,7 @@ function QuestionCardParent(props: Props) {
           updated_at={point.updated_at}
         ></PointTicket>
       ))}
+      {props.points.length % 2 === 1 && <SpacerDiv />}
     </OuterDiv>
   );
 }
@@ -29,7 +30,12 @@ const OuterDiv = styled("div")({
   width: "100%",
   // margin: `0 auto`,
   display: `flex`,
+  flexWrap: `wrap`,
   justifyContent: `space-evenly`,
+});
+
+const SpacerDiv = styled("div")({
+  width: "40%",
 });
 
 export default QuestionCardParent;

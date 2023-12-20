@@ -9,7 +9,7 @@ function Group391(props: Point) {
         <PointValue>{props.value}</PointValue>
         <PointUnit>{`p`}</PointUnit>
       </PointLine>
-      <PriceLine>{`¥${props.price}`}</PriceLine>
+      <PriceLine>{`¥${props.price?.toLocaleString()}`}</PriceLine>
     </PointTicketFrame>
   );
 }
@@ -20,7 +20,7 @@ const PointTicketFrame = styled("div")({
   position: `relative`,
   width: "40%",
   height: `101px`,
-  margin: `10px`,
+  margin: `10px 0`,
 });
 
 const PointLine = styled("div")({
