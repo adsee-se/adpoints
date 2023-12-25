@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import PointTicket from "../atoms/pointTicket";
+import PointTicket from "./pointTicket";
 import { styled } from "@mui/material/styles";
 import { Point } from "@/types/point";
 
@@ -9,7 +9,7 @@ interface Props {
   points: Point[];
 }
 
-function QuestionCardParent(props: Props) {
+function PointTicketParent(props: Props) {
   return (
     <OuterDiv>
       {props.points.map((point) => (
@@ -38,4 +38,4 @@ const SpacerDiv = styled("div")({
   width: "40%",
 });
 
-export default QuestionCardParent;
+export default PointTicketParent;

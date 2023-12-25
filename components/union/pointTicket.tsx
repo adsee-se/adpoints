@@ -1,15 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import { Point } from "@/types/point";
+import { Modal } from "react-responsive-modal";
+import Button from "../atoms/button";
+import "src/css/modal-styling.css";
 
-function Group391(props: Point) {
+function PointTicket(props: Point) {
+  const [open, setOpen] = useState(false);
+
   return (
     <PointTicketFrame>
-      <PointLine>
-        <PointValue>{props.value}</PointValue>
-        <PointUnit>{`p`}</PointUnit>
-      </PointLine>
-      <PriceLine>{`¥${props.price?.toLocaleString()}`}</PriceLine>
+      <button onClick={() => setOpen(true)}>
+        <PointLine>
+          <PointValue>{props.value}</PointValue>
+          <PointUnit>{`p`}</PointUnit>
+        </PointLine>
+        <PriceLine>{`¥${props.price?.toLocaleString()}`}</PriceLine>
+      </button>
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        center
+        classNames={{
+          modal: "noMargin",
+        }}
+      >
+        <ModalText>
+          {props.value}pを{`¥${props.price?.toLocaleString()}`}で購入する
+        </ModalText>
+        <Button>購入する</Button>
+      </Modal>
     </PointTicketFrame>
   );
 }
@@ -62,4 +82,10 @@ const PriceLine = styled("div")(({ theme }) => ({
   transform: `translate(-50%, -50%)`,
 }));
 
-export default Group391;
+const ModalText = styled("p")({
+  margin: `30px`,
+  textAlign: `center`,
+  fontSize: `20px`,
+});
+
+export default PointTicket;
