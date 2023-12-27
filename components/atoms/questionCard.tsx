@@ -43,7 +43,7 @@ const OuterFrame = styled("div")<Question>(({ status }) => ({
   }`,
   boxSizing: `border-box`,
   borderRadius: `10px`,
-  width: `315px`,
+  width: `85%`,
   height: `85px`,
   margin: `20px auto`,
 }));
