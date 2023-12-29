@@ -16,7 +16,7 @@ const Header1: any = styled('div')({
   padding: '0px',
   boxSizing: 'border-box',
   height: 'auto',
-  width: 'fit-content',
+  width: '100%',
   zIndex: 100, // ハンバーガーメニューが開いた際に一番上に来るよう100を指定
 });
 
@@ -32,7 +32,7 @@ const Header11: any = styled('div')({
   padding: '12px 24px',
   boxSizing: 'border-box',
   alignSelf: 'stretch',
-  width: '390px',
+  width: '100%',
   margin: '0px',
   overflow: 'hidden',
 });
@@ -47,7 +47,7 @@ const Container: any = styled('div')({
   alignItems: 'center',
   padding: '0px',
   boxSizing: 'border-box',
-  width: '366px',
+  width: '100%',
   height: '68px',
   margin: '0px',
 });
