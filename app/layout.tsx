@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/union/Header";
+import Header from "@/components/union/header";
 import "react-responsive-modal/styles.css";
 
 const NotoSansJP = Noto_Sans_JP({
