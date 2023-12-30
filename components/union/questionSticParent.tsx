@@ -6,13 +6,13 @@ import { styled } from "@mui/material/styles";
 import { Question } from "@/types/question";
 
 interface Props {
-  questions: Question[];
+  questions?: Question[];
 }
 
 function QuestionCardParent(props: Props) {
   return (
     <OuterDiv>
-      {props.questions.map((question) => (
+      {props.questions?.map((question) => (
         <QuestionStic
           key={question.id}
           id={question.id}
