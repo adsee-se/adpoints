@@ -184,7 +184,7 @@ const  HamburgerMenu = () => {
         loading="lazy"
         alt={'Line 3'}
       />
-      <a href="/">
+      <a href="/estimate">
         <Q2>{'質問する'}</Q2>
       </a>
       <Line4

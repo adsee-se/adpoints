@@ -2,30 +2,47 @@
 import Input from "../../components/atoms/input";
 import TextArea from "../../components/atoms/textArea";
 import Button from "../../components/atoms/button"
-import Link from 'next/link';
+import { putQuestions } from "../../puters/putQuestions";
 import { styled } from '@mui/material/styles';
 import { useRouter } from 'next/router'; // TODO 一時追加したが不要な可能性あり
 
-const Estimate = () => {
+const Confirm = () => {
   const router = useRouter(); // TODO 一時追加したが不要な可能性あり
-  // const { category, title, detail } = router.state; // TODO 一時追加したが不要な可能性あり
+  // const { category, title, question_text } = router.state; // TODO 一時追加したが不要な可能性あり
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const question = {
+      category: 'カテゴリーテスト',
+      title: 'titleテスト',
+      question_text: '質問内容詳細テスト'
+    };
+
+    const response = await putQuestions(question);
+    console.log('putQuestionsのレスポンス:', response); // 修正
+    if (response.statusCode === 200) {
+      router.push('/estimate/complete');
+    } else {
+      // エラーハンドリング
+    }
+  };
+
   return (
-    <EstimateArea>
+    <ConfirmArea>
       <b>質問内容のご確認</b>
       <Annotation>下記質問内容をご確認頂き、よろしければ送信ボタンを押してください。</Annotation>
-      <form>
+      <form onSubmit={handleSubmit}>
         <Input type="text" value={'カテゴリーテスト'} readOnly/>
         <Input type="text" value={'titleテスト'} readOnly/>
         <TextArea value={'質問内容詳細テスト'} readOnly/>
-        <Link href="/estimate/complete">
-          <Button>送信</Button>
-        </Link>
+        <Button type="submit">送信</Button>
       </form>
-    </EstimateArea>
+    </ConfirmArea>
   );
 };
 
-const EstimateArea = styled('div')({
+const ConfirmArea = styled('div')({
   display: `flex`,
   flexDirection: `column`,
   justifyContent: `center`,
@@ -38,4 +55,4 @@ const Annotation = styled('div')({
   wordBreak: `normal`,
 });
 
-export default Estimate;
+export default Confirm;
