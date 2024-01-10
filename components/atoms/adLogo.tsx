@@ -46,7 +46,7 @@ function AdLogo(props: AdLogoProps): JSX.Element {
   return (
     <AdLogo1 className={props.className}>
         <Adseed011
-          src={`assets/images/adlogo_adseed_01_1.png`}
+          src={`/assets/images/adlogo_adseed_01_1.png`}
           loading="lazy"
           alt={'adseed_01 1'}
         />
