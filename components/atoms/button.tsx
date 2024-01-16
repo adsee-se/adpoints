@@ -1,6 +1,6 @@
 "use client";
-import React, {ReactNode} from 'react';
-import { styled } from '@mui/material/styles';
+import React, { ReactNode } from "react";
+import { styled } from "@mui/material/styles";
 
 interface Props {
   children?: ReactNode;
@@ -15,28 +15,31 @@ interface Props {
 
 type Color = "main" | "sub" | "white";
 
-
-function Button(props:Props) {
+function Button(props: Props) {
   return (
-    <Button2 onClick={() => props.onClick && props.onClick()} type={props.type} className={`button ${props.size} ${props.color}`}>
+    <Button2
+      onClick={() => props.onClick && props.onClick()}
+      type={props.type}
+      className={`button ${props.size} ${props.color}`}
+    >
       <ButtonDiv>{props.children ? props.children : null}</ButtonDiv>
     </Button2>
   );
 }
 
-const Button2 = styled('button')({
+const Button2 = styled("button")({
   borderRadius: `23px`,
   display: `flex`,
   position: `relative`,
   isolation: `isolate`,
   flexDirection: `row`,
-  width: '311px',
+  width: "311px",
   height: `46px`,
   justifyContent: `flex-start`,
   alignItems: `flex-start`,
   padding: `0px`,
   boxSizing: `border-box`,
-  cursor: 'pointer',
+  cursor: "pointer",
   backgroundColor: `rgba(246, 161, 83, 1)`,
   boxShadow: `0px 4px 4px rgba(0, 0, 0, 0.25)`,
   margin: `10px`,
@@ -52,23 +55,23 @@ const Button2 = styled('button')({
   textDecoration: `none`,
   lineHeight: `20px`,
   textTransform: `uppercase`,
-  '&:hover': {
+  "&:hover": {
     backgroundColor: `rgba(200, 130, 50, 1)`,
   },
-  '&:active': {
+  "&:active": {
     backgroundColor: `rgba(150, 100, 30, 1)`,
   },
-  '&:focus': {
-    outline: 'none',
+  "&:focus": {
+    outline: "none",
     boxShadow: `0px 0px 8px rgba(0, 0, 0, 0.5)`,
   },
-  '&:disabled': {
+  "&:disabled": {
     backgroundColor: `rgba(150, 150, 150, 1)`,
-    cursor: 'not-allowed',
+    cursor: "not-allowed",
   },
 });
 
-const ButtonDiv = styled('div')(({ theme }) => ({
+const ButtonDiv = styled("div")(({ theme }) => ({
   textAlign: `center`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
@@ -82,11 +85,9 @@ const ButtonDiv = styled('div')(({ theme }) => ({
   lineHeight: `20px`,
   textTransform: `uppercase`,
   position: `absolute`,
-  left: '50%',
-  top: '50%',
-  transform: 'translate(-50%, -50%)',
+  left: "50%",
+  top: "50%",
+  transform: "translate(-50%, -50%)",
 }));
-
-
 
 export default Button;
