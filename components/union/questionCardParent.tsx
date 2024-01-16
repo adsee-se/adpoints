@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import QuestionCard from "../atoms/questionCard";
 import { styled } from "@mui/material/styles";
 import { Question } from "@/types/question";
