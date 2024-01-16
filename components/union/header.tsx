@@ -5,6 +5,29 @@ import AdLogo from "../atoms/adLogo";
 import IconsBurgerLine from "../atoms/iconsBurgerLine";
 import HamburgerMenu from "../atoms/hamburgerMenu";
 
+const Header = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const handleBurgerMenuClick = () => {
+    // ハンバーガーメニューを表示する処理を追加する
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <Header1>
+      <Header11>
+        <Container>
+          <Content>
+            <AdLogo />
+            <IconsBurgerLine onBurgerIconClick={handleBurgerMenuClick} />
+          </Content>
+        </Container>
+      </Header11>
+      {/* isOpenがtrueの場合にハンバーガーメニューを表示 */}
+      {isOpen && <HamburgerMenu />}
+    </Header1>
+  );
+};
+
 const Header1: any = styled("div")({
   borderRadius: "0px",
   display: "flex",
@@ -65,28 +88,5 @@ const Content: any = styled("div")({
   flex: "1",
   margin: "0px",
 });
-
-const Header = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const handleBurgerMenuClick = () => {
-    // ハンバーガーメニューを表示する処理を追加する
-    setIsOpen(!isOpen);
-  };
-
-  return (
-    <Header1>
-      <Header11>
-        <Container>
-          <Content>
-            <AdLogo />
-            <IconsBurgerLine onBurgerIconClick={handleBurgerMenuClick} />
-          </Content>
-        </Container>
-      </Header11>
-      {/* isOpenがtrueの場合にハンバーガーメニューを表示 */}
-      {isOpen && <HamburgerMenu />}
-    </Header1>
-  );
-};
 
 export default Header;

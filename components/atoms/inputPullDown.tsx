@@ -1,22 +1,5 @@
-import React from 'react';
-import { styled } from '@mui/material/styles';
-
-const InputPullDownContainer: any = styled('select')({
-  borderRadius: `4px`,
-  display: `flex`,
-  position: `relative`,
-  isolation: `isolate`,
-  flexDirection: `row`,
-  width: '311px',
-  height: `35px`,
-  justifyContent: `flex-start`,
-  alignItems: `flex-start`,
-  padding: `0px`,
-  boxSizing: `border-box`,
-  margin: `10px`,
-  border: `1px solid rgba(202, 209, 225, 1)`,
-  color: `rgba(149, 161, 187, 1)`,
-});
+import React from "react";
+import { styled } from "@mui/material/styles";
 
 function InputPullDown(): JSX.Element {
   return (
@@ -29,5 +12,22 @@ function InputPullDown(): JSX.Element {
     </InputPullDownContainer>
   );
 }
+
+const InputPullDownContainer: any = styled("select")({
+  borderRadius: `4px`,
+  display: `flex`,
+  position: `relative`,
+  isolation: `isolate`,
+  flexDirection: `row`,
+  width: "311px",
+  height: `35px`,
+  justifyContent: `flex-start`,
+  alignItems: `flex-start`,
+  padding: `0px`,
+  boxSizing: `border-box`,
+  margin: `10px`,
+  border: `1px solid rgba(202, 209, 225, 1)`,
+  color: `rgba(149, 161, 187, 1)`,
+});
 
 export default InputPullDown;

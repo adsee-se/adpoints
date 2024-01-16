@@ -1,24 +1,52 @@
 "use client";
 
-import React from 'react';
-import { styled } from '@mui/material/styles';
+import React from "react";
+import { styled } from "@mui/material/styles";
 
-const OuterDiv = styled('div')({
+function EstimateLink() {
+  return (
+    <OuterDiv>
+      <OrangeBack
+        src={"assets/images/orangeBackGround.png"}
+        loading="lazy"
+        alt={"Rectangle 613"}
+      />
+      <GuideText>{`質問およびお見積もりはこちら`}</GuideText>
+      <CenterDiv>
+        <Faq>{`質問する`}</Faq>
+        <IconDiv>
+          <CircleIcon
+            src={"assets/images/circleIcon.png"}
+            loading="lazy"
+            alt={"Rectangle 624"}
+          />
+          <RightArrowIcon
+            src={"assets/images/rightArrowIcon.png"}
+            loading="lazy"
+            alt={"Rectangle 625"}
+          />
+        </IconDiv>
+      </CenterDiv>
+    </OuterDiv>
+  );
+}
+
+const OuterDiv = styled("div")({
   borderRadius: `0px`,
   display: `flex`,
   position: `relative`,
   isolation: `isolate`,
   flexDirection: `row`,
-  width: '80%',
+  width: "80%",
   height: `165.93px`,
   justifyContent: `flex-start`,
   alignItems: `flex-start`,
   padding: `0px`,
   boxSizing: `border-box`,
-  margin:`30px auto`
+  margin: `30px auto`,
 });
 
-const OrangeBack = styled('img')({
+const OrangeBack = styled("img")({
   height: `165.93px`,
   width: `322px`,
   position: `absolute`,
@@ -26,7 +54,7 @@ const OrangeBack = styled('img')({
   top: `0px`,
 });
 
-const GuideText = styled('div')({
+const GuideText = styled("div")({
   textAlign: `center`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
@@ -46,7 +74,7 @@ const GuideText = styled('div')({
   top: `94px`,
 });
 
-const CenterDiv = styled('div')({
+const CenterDiv = styled("div")({
   display: `flex`,
   position: `absolute`,
   isolation: `isolate`,
@@ -61,7 +89,7 @@ const CenterDiv = styled('div')({
   top: `56px`,
 });
 
-const Faq = styled('div')({
+const Faq = styled("div")({
   textAlign: `center`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
@@ -81,7 +109,7 @@ const Faq = styled('div')({
   top: `0px`,
 });
 
-const IconDiv = styled('div')({
+const IconDiv = styled("div")({
   display: `flex`,
   position: `absolute`,
   isolation: `isolate`,
@@ -96,7 +124,7 @@ const IconDiv = styled('div')({
   top: `3px`,
 });
 
-const CircleIcon = styled('img')({
+const CircleIcon = styled("img")({
   height: `24.58px`,
   width: `24px`,
   position: `absolute`,
@@ -104,40 +132,12 @@ const CircleIcon = styled('img')({
   top: `0px`,
 });
 
-const RightArrowIcon = styled('img')({
+const RightArrowIcon = styled("img")({
   height: `7px`,
   width: `7px`,
   position: `absolute`,
   left: `9px`,
   top: `10px`,
 });
-
-function EstimateLink() {
-  return (
-    <OuterDiv>
-      <OrangeBack
-        src={'assets/images/orangeBackGround.png'}
-        loading="lazy"
-        alt={'Rectangle 613'}
-      />
-      <GuideText>{`質問およびお見積もりはこちら`}</GuideText>
-      <CenterDiv>
-        <Faq>{`質問する`}</Faq>
-        <IconDiv>
-          <CircleIcon
-            src={'assets/images/circleIcon.png'}
-            loading="lazy"
-            alt={'Rectangle 624'}
-          />
-          <RightArrowIcon
-            src={'assets/images/rightArrowIcon.png'}
-            loading="lazy"
-            alt={'Rectangle 625'}
-          />
-        </IconDiv>
-      </CenterDiv>
-    </OuterDiv>
-  );
-}
 
 export default EstimateLink;

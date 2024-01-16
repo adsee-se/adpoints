@@ -2,6 +2,65 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
 
+export interface HamburgerMenuProps {
+  isOpen: boolean;
+}
+
+const HamburgerMenu = () => {
+  return (
+    <HamburgerMenu1>
+      {/* TODO 以下はログインしているユーザーの名前を表示するように修正 */}
+      <Q>{"タローさん"}</Q>
+      <Line1
+        src={"/assets/images/HamburgerMenu/Line.png"}
+        loading="lazy"
+        alt={"Line 1"}
+      />
+      {/* 全てのリンクを仮でルートに設定 */}
+      <a href="/">
+        <Home>{"HOME"}</Home>
+      </a>
+      <Line2
+        src={"/assets/images/HamburgerMenu/Line.png"}
+        loading="lazy"
+        alt={"Line 2"}
+      />
+      <a href="/">
+        <Q1>{"ポイントチャージ"}</Q1>
+      </a>
+      <Line3
+        src={"/assets/images/HamburgerMenu/Line.png"}
+        loading="lazy"
+        alt={"Line 3"}
+      />
+      <a href="/">
+        <Q2>{"質問する"}</Q2>
+      </a>
+      <Line4
+        src={"/assets/images/HamburgerMenu/Line.png"}
+        loading="lazy"
+        alt={"Line 4"}
+      />
+      <a href="/">
+        <Box1>{"返信BOX"}</Box1>
+      </a>
+      <Line5
+        src={"/assets/images/HamburgerMenu/Line.png"}
+        loading="lazy"
+        alt={"Line 5"}
+      />
+      <a href="/">
+        <Q3>{"設定"}</Q3>
+      </a>
+      <Line6
+        src={"/assets/images/HamburgerMenu/Line.png"}
+        loading="lazy"
+        alt={"Line 6"}
+      />
+    </HamburgerMenu1>
+  );
+};
+
 const HamburgerMenu1: any = styled("div")(() => ({
   backgroundColor: "rgba(246, 161, 83, 1)",
   alignSelf: "stretch",
@@ -151,64 +210,5 @@ const Line6: any = styled("img")({
   width: "50%",
   position: "relative",
 });
-
-export interface HamburgerMenuProps {
-  isOpen: boolean;
-}
-
-const HamburgerMenu = () => {
-  return (
-    <HamburgerMenu1>
-      {/* TODO 以下はログインしているユーザーの名前を表示するように修正 */}
-      <Q>{"タローさん"}</Q>
-      <Line1
-        src={"/assets/images/HamburgerMenu/Line.png"}
-        loading="lazy"
-        alt={"Line 1"}
-      />
-      {/* 全てのリンクを仮でルートに設定 */}
-      <a href="/">
-        <Home>{"HOME"}</Home>
-      </a>
-      <Line2
-        src={"/assets/images/HamburgerMenu/Line.png"}
-        loading="lazy"
-        alt={"Line 2"}
-      />
-      <a href="/">
-        <Q1>{"ポイントチャージ"}</Q1>
-      </a>
-      <Line3
-        src={"/assets/images/HamburgerMenu/Line.png"}
-        loading="lazy"
-        alt={"Line 3"}
-      />
-      <a href="/">
-        <Q2>{"質問する"}</Q2>
-      </a>
-      <Line4
-        src={"/assets/images/HamburgerMenu/Line.png"}
-        loading="lazy"
-        alt={"Line 4"}
-      />
-      <a href="/">
-        <Box1>{"返信BOX"}</Box1>
-      </a>
-      <Line5
-        src={"/assets/images/HamburgerMenu/Line.png"}
-        loading="lazy"
-        alt={"Line 5"}
-      />
-      <a href="/">
-        <Q3>{"設定"}</Q3>
-      </a>
-      <Line6
-        src={"/assets/images/HamburgerMenu/Line.png"}
-        loading="lazy"
-        alt={"Line 6"}
-      />
-    </HamburgerMenu1>
-  );
-};
 
 export default HamburgerMenu;
