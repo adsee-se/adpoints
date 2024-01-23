@@ -1,6 +1,7 @@
 "use client";
 import React, { ReactNode } from "react";
 import { styled } from "@mui/material/styles";
+import Link from "next/link";
 
 interface Props {
   children?: ReactNode;
@@ -17,13 +18,29 @@ type Color = "main" | "sub" | "white";
 
 function Button(props: Props) {
   return (
-    <Button2
-      onClick={() => props.onClick && props.onClick()}
-      type={props.type}
-      className={`button ${props.size} ${props.color}`}
-    >
-      <ButtonDiv>{props.children ? props.children : null}</ButtonDiv>
-    </Button2>
+    <>
+      {props.href && !props.disabled ? (
+        <>
+          <Link href={props.href}>
+            <Button2
+              onClick={() => props.onClick && props.onClick()}
+              type={props.type}
+              className={`button ${props.size} ${props.color}`}
+            >
+              <ButtonDiv>{props.children ? props.children : null}</ButtonDiv>
+            </Button2>
+          </Link>
+        </>
+      ) : (
+        <Button2
+          onClick={() => props.onClick && props.onClick()}
+          type={props.type}
+          className={`button ${props.size} ${props.color}`}
+        >
+          <ButtonDiv>{props.children ? props.children : null}</ButtonDiv>
+        </Button2>
+      )}
+    </>
   );
 }
 

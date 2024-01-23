@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { styled } from "@mui/material/styles";
+import { signOut } from "next-auth/react";
 
 export interface HamburgerMenuProps {
   isOpen: boolean;
@@ -57,6 +58,13 @@ const HamburgerMenu = () => {
         loading="lazy"
         alt={"Line 6"}
       />
+      <button
+        onClick={() => {
+          signOut();
+        }}
+      >
+        <Q3>{"ログアウト"}</Q3>
+      </button>
     </HamburgerMenu1>
   );
 };
