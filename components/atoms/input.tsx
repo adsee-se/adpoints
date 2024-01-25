@@ -9,6 +9,9 @@ interface Props {
   value?: string;
   placeholder?: string;
   name?: string;
+  width?: string;
+  height?: string;
+  margin?: string;
   maxlength?: number;
   minlength?: number;
   form?: any;
@@ -32,6 +35,11 @@ interface Props {
 }
 
 function Input(props: Props) {
+  const style = {
+    width: props.width ? props.width : "100%",
+    height: props.height ? props.height : "100%",
+    margin: props.margin ? props.margin : '10px',
+  };
   return (
     <Input2
       className={props.className}
@@ -39,8 +47,8 @@ function Input(props: Props) {
       placeholder={props.placeholder}
       onChange={(e) => props.onChange?.(e.target.value)}
       name={props.name}
-    >
-    </Input2>
+      style={style}
+    ></Input2>
   );
 }
 
@@ -50,7 +58,6 @@ const Input2 = styled("input")({
   position: `relative`,
   isolation: `isolate`,
   flexDirection: `row`,
-  width: "311px",
   height: `46px`,
   justifyContent: `flex-start`,
   alignItems: `flex-start`,

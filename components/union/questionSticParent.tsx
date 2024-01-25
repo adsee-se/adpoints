@@ -3,7 +3,7 @@
 import React from "react";
 import QuestionStic from "../atoms/questionStic";
 import { styled } from "@mui/material/styles";
-import { Question } from "@/types/question";
+import { Question } from "../../types/question";
 
 interface Props {
   questions?: Question[];

@@ -36,11 +36,15 @@ export default function LoginForm() {
             name="email"
             type="email"
             placeholder="ID or メールアドレス"
+            width="311px"
+            height="48px"
           />
           <Input
             name="password"
             type="password"
             placeholder="パスワード"
+            width="311px"
+            height="48px"
           />
 
           <ForgotPasswordLink href="#">
