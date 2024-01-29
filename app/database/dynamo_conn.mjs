@@ -20,14 +20,24 @@ const dynamodbclient = new DynamoDBClient({
   endpoint: "http://localhost:8000",
 });
 
-export const CreateUser = async (email, password) => {
+export const CreateUser = async (lastName,
+  firstName,
+  lastNameKana,
+  firstNameKana,
+  nickName,
+  email,
+  password) => {
   let newSaltHash = genPassword(password);
   let params = {
     TableName: "users",
     Item: {
-      id: { N: 8 },
+      id: { N: 10 },
+      lastName: { S: lastName },
+      firstName: { S: firstName },
+      lastNameKana: { S: lastNameKana },
+      firstNameKana: { S: firstNameKana },
+      nickName: { S: nickName },
       mail_address: { S: email },
-      username: { S: "testname" },
       hashstring: { S: newSaltHash.hashstring },
       salt: { S: newSaltHash.salt },
       // role: { S: "basic" },
@@ -55,7 +65,7 @@ export const VerifyUser = async (email, password) => {
   let params = {
     TableName: "users",
     Key: {
-      id: { N: 8 },
+      id: { N: 10 },
       mail_address: { S: email },
     },
   };

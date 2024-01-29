@@ -11,17 +11,27 @@ export default function LoginForm() {
   const handelSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
+    const password = formData.get("password");
+    const confirmPassword = formData.get("confirmPassword");
+
     const response = await fetch(`/api/auth/register`, {
       method: "POST",
       body: JSON.stringify({
+        lastName: formData.get("lastName"),
+        firstName: formData.get("firstName"),
+        lastNameKana: formData.get("lastNameKana"),
+        firstNameKana: formData.get("firstNameKana"),
+        nickName: formData.get("nickName"),
         email: formData.get("email"),
         password: formData.get("password"),
+        confirmPassword: formData.get("confirmPassword"),
       }),
     });
     if (response.statusText === "OK") {
       router.push("/login");
     }
     console.log({ response });
+
   };
 
   return (
@@ -95,7 +105,7 @@ export default function LoginForm() {
           <FrameInput>
             <Title>{`ニックネーム`} </Title>
             <Input
-              name="nickname"
+              name="nickName"
               type="text"
               placeholder="例）タロー"
               width={"311px"}
@@ -137,7 +147,7 @@ export default function LoginForm() {
               <Span2>{`*`}</Span2>
             </Title>
             <Input
-              name="password"
+              name="confirmPassword"
               type="password"
               placeholder="パスワードを再入力"
               width={"311px"}
