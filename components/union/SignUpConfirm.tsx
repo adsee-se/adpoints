@@ -1,41 +1,48 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FormEvent } from "react";
 import { styled } from "@mui/material/styles";
 import Input from "../atoms/input";
 import Button from "../atoms/button";
 import { useRouter } from "next/navigation";
 
-export default function LoginForm() {
+export default function SignUpConfirm() {
   const router = useRouter();
+
   const handelSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // const formData = new FormData(e.currentTarget);
-    // const password = formData.get("password");
-    // const confirmPassword = formData.get("confirmPassword");
+    const formData = new FormData(e.currentTarget);
+    const password = formData.get("password");
+    const confirmPassword = formData.get("confirmPassword");
 
-    // const response = await fetch(`/api/auth/register`, {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     lastName: formData.get("lastName"),
-    //     firstName: formData.get("firstName"),
-    //     lastNameKana: formData.get("lastNameKana"),
-    //     firstNameKana: formData.get("firstNameKana"),
-    //     nickName: formData.get("nickName"),
-    //     email: formData.get("email"),
-    //     password: formData.get("password"),
-    //     confirmPassword: formData.get("confirmPassword"),
-    //   }),
-    // });
-    // if (response.statusText === "OK") {
-    //   router.push("/login");
-    // }
-    // console.log({ response });
-    router.push("/registerConfirm");
+    const response = await fetch(`/api/auth/register`, {
+      method: "POST",
+      body: JSON.stringify({
+        lastName: formData.get("lastName"),
+        firstName: formData.get("firstName"),
+        lastNameKana: formData.get("lastNameKana"),
+        firstNameKana: formData.get("firstNameKana"),
+        nickName: formData.get("nickName"),
+        email: formData.get("email"),
+        password: formData.get("password"),
+        confirmPassword: formData.get("confirmPassword"),
+      }),
+    });
+    if (response.statusText === "OK") {
+      router.push("/login");
+    }
+    console.log({ response });
   };
+  // const [lastName, setLastName] = useState("");
+  const lastName = localStorage.getItem("lastName");
+  const firstName = localStorage.getItem("firstName");
+  const lastNameKana = localStorage.getItem("lastNameKana");
+  const firstNameKana = localStorage.getItem("firstNameKana");
+  const nickName = localStorage.getItem("nickName");
+  const email = localStorage.getItem("email");
+  const password = localStorage.getItem("password");
 
-
-  console.log(localStorage, "localStorage");
+  console.log(localStorage, "localStorage!!!");
 
   return (
     <>
@@ -43,13 +50,12 @@ export default function LoginForm() {
         <FormDiv>
           <Q>{`新規登録`}</Q>
           <div>
-            <Q11>{`*必須項目`}</Q11>
+            <Q11>{`下記の内容を登録します。よろしいですか？`}</Q11>
           </div>
           <FrameTwoInput>
             <Frame>
               <Title>
                 <Span1>{`姓`}</Span1>
-                <Span2>{`*`}</Span2>
               </Title>
               <Input
                 name="lastName"
@@ -58,12 +64,13 @@ export default function LoginForm() {
                 width={"142px"}
                 height={"48"}
                 margin="0"
+                value={lastName ? lastName : ""}
+                disabled={true}
               />
             </Frame>
             <Frame>
               <Title>
                 <Span1>{`名`}</Span1>
-                <Span2>{`*`}</Span2>
               </Title>
               <Input
                 name="firstName"
@@ -72,6 +79,8 @@ export default function LoginForm() {
                 width={"142px"}
                 height={"48"}
                 margin="0"
+                disabled={true}
+                value={firstName ? firstName : ""}
               />
             </Frame>
           </FrameTwoInput>
@@ -79,7 +88,6 @@ export default function LoginForm() {
             <Frame>
               <Title>
                 <Span1>{`セイ`}</Span1>
-                <Span2>{`*`}</Span2>
               </Title>
               <Input
                 name="lastNameKana"
@@ -88,12 +96,13 @@ export default function LoginForm() {
                 width={"142px"}
                 height={"48"}
                 margin="0"
+                disabled={true}
+                value={lastNameKana ? lastNameKana : ""}
               />
             </Frame>
             <Frame>
               <Q4>
                 <Span1>{`メイ`}</Span1>
-                <Span2>{`*`}</Span2>
               </Q4>
               <Input
                 name="firstNameKana"
@@ -102,6 +111,8 @@ export default function LoginForm() {
                 width={"142px"}
                 height={"48"}
                 margin="0"
+                disabled={true}
+                value={firstNameKana ? firstNameKana : ""}
               />
             </Frame>
           </FrameTwoInput>
@@ -114,12 +125,13 @@ export default function LoginForm() {
               width={"311px"}
               height={"48"}
               margin="0"
+              disabled={true}
+              value={nickName ? nickName : ""}
             />
           </FrameInput>
           <FrameInput>
             <Title>
               <Span1>{`メールアドレス`}</Span1>
-              <Span2>{`*`}</Span2>
             </Title>
             <Input
               name="email"
@@ -128,12 +140,13 @@ export default function LoginForm() {
               width={"311px"}
               height={"48"}
               margin="0"
+              disabled={true}
+              value={email ? email : ""}
             />
           </FrameInput>
           <FrameInput>
             <Title>
               <Span1>{`パスワード`}</Span1>
-              <Span2>{`*`}</Span2>
             </Title>
             <Input
               name="password"
@@ -142,31 +155,12 @@ export default function LoginForm() {
               width={"311px"}
               height={"48"}
               margin="0"
+              disabled={true}
+              value={password ? password : ""}
             />
           </FrameInput>
-          <FrameInput>
-            <Title>
-              <Span1>{`パスワード確認用`}</Span1>
-              <Span2>{`*`}</Span2>
-            </Title>
-            <Input
-              name="confirmPassword"
-              type="password"
-              placeholder="パスワードを再入力"
-              width={"311px"}
-              height={"48"}
-              margin="0"
-            />
-          </FrameInput>
-          <FormDiv2>
-            <Q>{`利用規約`}</Q>
-            <Rectangle612></Rectangle612>
-          </FormDiv2>
-          <Group377>
-            <CheckboxOff1 />
-            <Q10>{`利用規約に同意します`}</Q10>
-          </Group377>
-          <Button>次へ</Button>
+          <Button>新規登録する</Button>
+          <Button color="gray"href={`/register`}>戻る</Button>
         </FormDiv>
       </form>
     </>
@@ -184,18 +178,6 @@ const FormDiv: any = styled("div")({
   padding: `0px`,
   boxSizing: `border-box`,
   marginTop: 100,
-});
-const FormDiv2: any = styled("div")({
-  borderRadius: `0px`,
-  display: `flex`,
-  isolation: `isolate`,
-  flexDirection: `column`,
-  width: "100%",
-  justifyContent: "center",
-  alignItems: "center",
-  padding: `0px`,
-  boxSizing: `border-box`,
-  marginTop: 30,
 });
 
 const Q: any = styled("div")(({ theme }: any) => ({

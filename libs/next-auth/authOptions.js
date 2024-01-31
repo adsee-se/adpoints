@@ -1,6 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import { randomUUID, randomBytes } from "crypto";
-import { VerifyUser } from "@/app/database/dynamo_conn.mjs";
+import { VerifyUser, fetchUserFromDatabase } from "@/app/database/dynamo_conn.mjs";
 
 export const authOptions = {
   /* providers */
@@ -36,12 +36,25 @@ export const authOptions = {
     async jwt({ token, user, session }) {
       console.log("jwt callback", { token, user, session });
       if (user) {
+        // console.log({token});
+        // console.log(token,'token')
+        // const userData = await fetchUserFromDatabase(user.id,user.address);
         return {
           ...token,
           id: user.id,
-          name: user.username,
-          address: user.mail_address,
+          lastName: user.lastName,
+          firstName: user.firstName,
+          nickName: user.nickName,
+          email: user.mail_address,
         };
+        // return {
+        //   ...token,
+        //   id: userData.id,
+        //   lastName: userData.lastName,
+        //   firstName: userData.firstName,
+        //   nickName: userData.nickName,
+        //   email: userData.mail_address,
+        // };
       }
       return token;
     },
@@ -52,7 +65,10 @@ export const authOptions = {
         user: {
           ...session.user,
           id: token.id,
-          address: token.address,
+          lastName: token.lastName,
+          firstName: token.firstName,
+          nickName: token.nickName,
+          email: token.email,
         },
       };
     },

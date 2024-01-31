@@ -6,17 +6,26 @@ import Link from "next/link";
 interface Props {
   children?: ReactNode;
   disabled?: boolean;
+  width?: string;
+  height?: string;
+  margin?: string;
   size?: "large" | "middle" | "small" | "tiny";
   type?: "button" | "submit" | "reset";
-  color?: Color;
+  color?: string;
   onClick?: () => void;
   onMouseDown?: () => void;
   href?: string;
 }
 
-type Color = "main" | "sub" | "white";
-
 function Button(props: Props) {
+  const style = {
+    // width: props.width ? props.width : "100%",
+    // height: props.height ? props.height : "100%",
+    // margin: props.margin ? props.margin : "10px",
+    backgroundColor: props.color
+      ? `rgba(204, 204, 204, 1)`
+      : `rgba(246, 161, 83, 1)`,
+  };
   return (
     <>
       {props.href && !props.disabled ? (
@@ -27,6 +36,7 @@ function Button(props: Props) {
               type={props.type}
               className={`button ${props.size} ${props.color}`}
               color={props.color}
+              style={style}
             >
               <ButtonDiv>{props.children ? props.children : null}</ButtonDiv>
             </Button2>
@@ -37,6 +47,7 @@ function Button(props: Props) {
           onClick={() => props.onClick && props.onClick()}
           type={props.type}
           className={`button ${props.size} ${props.color}`}
+          style={style}
         >
           <ButtonDiv>{props.children ? props.children : null}</ButtonDiv>
         </Button2>

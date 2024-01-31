@@ -2,16 +2,36 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
 import { signOut } from "next-auth/react";
+import { Session as NextAuthSession } from "next-auth";
 
-export interface HamburgerMenuProps {
-  isOpen: boolean;
+interface ExtendedSession extends NextAuthSession {
+  user?: {
+    name?: string | null | undefined;
+    email?: string | null | undefined;
+    image?: string | null | undefined;
+  };
 }
 
-const HamburgerMenu = () => {
+// 新しいUser型の定義
+interface User {
+  id: number;
+  lastName: string;
+  firstName: string;
+  nickName: string;
+  email: string;
+}
+
+export interface HamburgerMenuProps {
+  isOpen?: boolean;
+  session: ExtendedSession | null;
+}
+
+const HamburgerMenu = (props: HamburgerMenuProps) => {
+  const user = props.session?.user ? props.session.user as User : null;
   return (
     <HamburgerMenu1>
       {/* TODO 以下はログインしているユーザーの名前を表示するように修正 */}
-      <Q>{"タローさん"}</Q>
+      <Q>{user?.nickName}</Q>
       <Line1
         src={"/assets/images/HamburgerMenu/Line.png"}
         loading="lazy"

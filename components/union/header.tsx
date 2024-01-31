@@ -4,14 +4,17 @@ import { styled } from "@mui/material/styles";
 import AdLogo from "../atoms/adLogo";
 import IconsBurgerLine from "../atoms/iconsBurgerLine";
 import HamburgerMenu from "../atoms/hamburgerMenu";
+import { useSession } from "next-auth/react";
 
 const Header = () => {
+  const { data: session, status } = useSession();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const handleBurgerMenuClick = () => {
     // ハンバーガーメニューを表示する処理を追加する
     setIsOpen(!isOpen);
   };
 
+  console.log(session, "sessionは？？？？");
   return (
     <Header1>
       <Header11>
@@ -23,7 +26,7 @@ const Header = () => {
         </Container>
       </Header11>
       {/* isOpenがtrueの場合にハンバーガーメニューを表示 */}
-      {isOpen && <HamburgerMenu />}
+      {isOpen && <HamburgerMenu session={session}/>}
     </Header1>
   );
 };

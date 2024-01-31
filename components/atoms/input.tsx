@@ -29,7 +29,8 @@ interface Props {
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   onKeyPress?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   onSubmit?: (value: string, event: React.FormEvent<HTMLFormElement>) => void;
-  onChange?: (value: string) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  // onChange?: (value: string) => void;
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (value: string) => void;
 }
@@ -38,16 +39,22 @@ function Input(props: Props) {
   const style = {
     width: props.width ? props.width : "100%",
     height: props.height ? props.height : "100%",
-    margin: props.margin ? props.margin : '10px',
+    margin: props.margin ? props.margin : "10px",
+    border: props.disabled
+      ? `1px solid rgba(202, 209, 225, 1)`
+      : `1px solid rgba(246, 161, 83, 1)`,
   };
   return (
     <Input2
       className={props.className}
       type={props.type}
       placeholder={props.placeholder}
-      onChange={(e) => props.onChange?.(e.target.value)}
+      onChange={(e) => props.onChange?.(e)}
+      // onChange={(e) => props.onChange?.(e.target.value)}
       name={props.name}
       style={style}
+      value={props.value}
+      disabled={props.disabled}
     ></Input2>
   );
 }
@@ -63,12 +70,13 @@ const Input2 = styled("input")({
   alignItems: `flex-start`,
   padding: `0px`,
   boxSizing: `border-box`,
-  margin: "10px",
-  border: `1px solid rgba(202, 209, 225, 1)`,
+  // margin: "10px",
+  // border: `1px solid rgba(246, 161, 83, 1)`,
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
-  color: `rgba(149, 161, 187, 1)`,
+  color: `black`,
+  // color: `rgba(149, 161, 187, 1)`,
   fontStyle: `normal`,
   fontFamily: `Poppins`,
   fontWeight: `400`,

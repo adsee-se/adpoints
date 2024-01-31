@@ -85,3 +85,26 @@ export const VerifyUser = async (email, password) => {
     throw error;
   }
 };
+
+
+// export const fetchUserFromDatabase = async (userId, mail_address) => {
+//   let params = {
+//     TableName: "users",
+//     Key: {
+//       id: { N: userId },
+//       mail_address: { S: mail_address },
+//     },
+//   };
+
+//   try {
+//     const getItemCommand = new GetItemCommand(params);
+//     let userdata = await dynamodbclient.send(getItemCommand);
+//     userdata = userdata?.Item ? unmarshall(userdata?.Item) : null;
+//     return userdata.Item;
+//   } catch (error) {
+//     console.error("Error fetching user data: ", error);
+//     throw error;
+//   }
+// };
+
+

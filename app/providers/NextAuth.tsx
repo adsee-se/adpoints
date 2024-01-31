@@ -13,8 +13,8 @@ export const NextAuthProvider = ({ children, session }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  if (session === null && pathname !== "/register") {
-    router.push("/login");
-  }
+  // if (session === null && pathname !== "/register") {
+  //   router.push("/login");
+  // }
   return <SessionProvider>{children}</SessionProvider>;
 };

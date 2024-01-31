@@ -21,12 +21,11 @@ export default function LoginForm() {
       password: formData.get("password"),
       redirect: false,
     });
-    if (status === "authenticated") {
-      router.push("/");
-    }
   };
+  if (status === "authenticated") {
+    router.push("/");
+  }
 
-  console.log(status, "status");
   return (
     <>
       <LoginDiv>
