@@ -1,4 +1,7 @@
-export const renderTimeWithinText = (updatedAt?: Date, createdAt?: Date) => {
+export const renderTimeWithinText = (
+  updatedAt?: Date | string,
+  createdAt?: Date | string
+) => {
   const returnTimeSecond =
     new Date(updatedAt ? updatedAt : createdAt ? createdAt : "").getTime() /
     1000;

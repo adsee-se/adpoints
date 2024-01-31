@@ -17,8 +17,8 @@ function PointTicketParent(props: Props) {
           id={point.id}
           value={point.value}
           price={point.price}
-          created_at={point.created_at}
-          updated_at={point.updated_at}
+          createdAt={point.createdAt}
+          updatedAt={point.updatedAt}
         ></PointTicket>
       ))}
       {props.points.length % 2 === 1 && <SpacerDiv />}

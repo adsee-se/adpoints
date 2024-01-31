@@ -26,6 +26,7 @@ function Button(props: Props) {
               onClick={() => props.onClick && props.onClick()}
               type={props.type}
               className={`button ${props.size} ${props.color}`}
+              color={props.color}
             >
               <ButtonDiv>{props.children ? props.children : null}</ButtonDiv>
             </Button2>
@@ -44,7 +45,7 @@ function Button(props: Props) {
   );
 }
 
-const Button2 = styled("button")({
+const Button2 = styled("button")<Props>(({ color }) => ({
   borderRadius: `23px`,
   display: `flex`,
   position: `relative`,
@@ -57,7 +58,9 @@ const Button2 = styled("button")({
   padding: `0px`,
   boxSizing: `border-box`,
   cursor: "pointer",
-  backgroundColor: `rgba(246, 161, 83, 1)`,
+  backgroundColor: `${
+    color === "sub" ? "rgba(204, 204, 204, 1)" : "rgba(246, 161, 83, 1)"
+  }`,
   boxShadow: `0px 4px 4px rgba(0, 0, 0, 0.25)`,
   margin: `10px`,
   textAlign: `center`,
@@ -86,7 +89,7 @@ const Button2 = styled("button")({
     backgroundColor: `rgba(150, 150, 150, 1)`,
     cursor: "not-allowed",
   },
-});
+}));
 
 const ButtonDiv = styled("div")(({ theme }) => ({
   textAlign: `center`,

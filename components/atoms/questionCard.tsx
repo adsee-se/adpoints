@@ -5,31 +5,42 @@ import { styled } from "@mui/material/styles";
 import { YET_REPLY, ALREDY_REPLY, OTHER } from "@/helpers/const";
 import { renderTimeWithinText } from "@/helpers/renderTimeWithinText";
 import { Question } from "@/types/question";
+import { useRouter } from "next/navigation";
 
 function QuestionCard(props: Question) {
   const timeWithinText = renderTimeWithinText(
-    props.updated_at,
-    props.created_at
+    props?.updatedAt,
+    props?.createdAt
   );
-
+  const router = useRouter();
   return (
-    <OuterFrame status={props.status} key={props.id}>
-      <TimeCounter>{timeWithinText}</TimeCounter>
-      <QuestionTitle>{props.title}</QuestionTitle>
-      <FlexFrame>
-        <RequiredPoint status={props.status}>
-          {props.point && props.point > 0
-            ? String(props.point) + "p"
-            : "お見積もり中"}
-        </RequiredPoint>
-        <CategoryTitle>{props.category}</CategoryTitle>
-        <QuestionLink status={props.status}>
-          {props.point && props.point > 0 ? "回答を確認する" : "質問を確認する"}
-        </QuestionLink>
-      </FlexFrame>
-    </OuterFrame>
+    <RouterButton
+      onClick={() => router.push(`/questions/${props?.id}?userId=3`)} //ログインuserIdに修正
+    >
+      <OuterFrame status={props?.status} key={props?.id}>
+        <TimeCounter>{timeWithinText}</TimeCounter>
+        <QuestionTitle>{props?.title}</QuestionTitle>
+        <FlexFrame>
+          <RequiredPoint status={props?.status}>
+            {props?.point && props?.point > 0
+              ? String(props?.point) + "p"
+              : "お見積もり中"}
+          </RequiredPoint>
+          <CategoryTitle>{props?.category}</CategoryTitle>
+          <QuestionLink status={props?.status}>
+            {props?.point && props?.point > 0
+              ? "回答を確認する"
+              : "質問を確認する"}
+          </QuestionLink>
+        </FlexFrame>
+      </OuterFrame>
+    </RouterButton>
   );
 }
+
+const RouterButton = styled("button")({
+  width: `100%`,
+});
 
 const OuterFrame = styled("div")<Question>(({ status }) => ({
   boxShadow: `0px 4px 4px rgba(0, 0, 0, 0.25)`,

@@ -1,174 +1,21 @@
-"use client";
 import React from "react";
-import { styled } from "@mui/material/styles";
-import Button from "@/components/atoms/button";
-import ConfirmFrame from "@/components/atoms/confirmFrame";
+import { fetchQuestion } from "@/fetchers/fetchQuestion";
+import Title from "@/components/atoms/title";
+import QuestionDetail from "@/components/union/questionDetail";
 
-const Frame1241 = async () => {
+const Question = async (props: any) => {
+  const question = await fetchQuestion(props.params.id, props.searchParams.userId);
+
   return (
-    <Frame12411>
-      <Faq>{`注文内容を確認する`}</Faq>
-      <TheHarderYouWork1>
-        {`質問内容と消費ポイントをご確認の上、ご依頼ください。`}
-      </TheHarderYouWork1>
-      <Group388>
-        <Q>{`消費ポイント`}</Q>
-        <Q88888P>
-          <Q88888PSpan1>{`88,888`}</Q88888PSpan1>
-          <Q88888PSpan2>{`p`}</Q88888PSpan2>
-        </Q88888P>
-      </Group388>
-      <TheHarderYouWork>{`注文期限○/○まで`}</TheHarderYouWork>
-      <ConfirmFrame />
-      <ConfirmFrame />
-      <ConfirmFrame />
-      <Button size="middle">依頼する</Button>
-      <Button size="middle">戻る</Button>
-    </Frame12411>
+    <main>
+      <Title
+        title={`注文内容を確認する`}
+        fontWeight={"900"}
+        size={"24px"}
+      ></Title>
+      <QuestionDetail question={question} />
+    </main>
   );
 };
 
-const Frame12411 = styled("div")({
-  borderRadius: `0px`,
-  // display: `flex`,
-  // position: `relative`,
-  // isolation: `isolate`,
-  // flexDirection: `row`,
-  width: "100%",
-  height: `656px`,
-  // justifyContent: `flex-start`,
-  // alignItems: `flex-start`,
-  padding: `0px`,
-  boxSizing: `border-box`,
-});
-
-const TheHarderYouWork = styled("div")(({ theme }) => ({
-  textAlign: `center`,
-  // whiteSpace: `pre-wrap`,
-  fontSynthesis: `none`,
-  color: `rgba(149, 161, 187, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Poppins`,
-  fontWeight: `400`,
-  fontSize: `14px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  lineHeight: `24px`,
-  textTransform: `none`,
-  // width: `311px`,
-  height: `45px`,
-  // position: `absolute`,
-  // left: `0px`,
-  // top: `472px`,
-}));
-
-const Group388 = styled("div")({
-  display: `flex`,
-});
-
-const Q88888PSpan1 = styled("span")({
-  // whiteSpace: `pre-wrap`,
-  color: `rgba(0, 0, 0, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Poppins`,
-  fontWeight: `400`,
-  fontSize: `30px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  lineHeight: `24px`,
-  textTransform: `none`,
-});
-
-const Q88888PSpan2 = styled("span")({
-  // whiteSpace: `pre-wrap`,
-  color: `rgba(0, 0, 0, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Poppins`,
-  fontWeight: `400`,
-  fontSize: `14px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  lineHeight: `24px`,
-  textTransform: `none`,
-});
-
-const Q88888P = styled("div")({
-  textAlign: `right`,
-  whiteSpace: `pre-wrap`,
-  fontSynthesis: `none`,
-  color: `rgba(0, 0, 0, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Poppins`,
-  fontWeight: `400`,
-  fontSize: `nullpx`,
-  letterSpacing: `NaNpx`,
-  textDecoration: `none`,
-  lineHeight: `24px`,
-  textTransform: `none`,
-  width: `111px`,
-  height: `24.58px`,
-  // position: `absolute`,
-  // left: `122px`,
-  // top: `0px`,
-});
-
-const Q = styled("div")(({ theme }) => ({
-  textAlign: `left`,
-  // whiteSpace: `pre-wrap`,
-  fontSynthesis: `none`,
-  color: `rgba(0, 0, 0, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Poppins`,
-  fontWeight: `400`,
-  fontSize: `14px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  lineHeight: `24px`,
-  textTransform: `none`,
-  // width: `84px`,
-  height: `24.58px`,
-  // position: `absolute`,
-  // left: `0px`,
-  // top: `2px`,
-}));
-
-const TheHarderYouWork1 = styled("div")(({ theme }) => ({
-  // textAlign: `left`,
-  // whiteSpace: `pre-wrap`,
-  fontSynthesis: `none`,
-  color: `rgba(149, 161, 187, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Poppins`,
-  fontWeight: `400`,
-  fontSize: `14px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  lineHeight: `24px`,
-  textTransform: `none`,
-  // width: `311px`,
-  // position: `absolute`,
-  // left: `0px`,
-  // top: `58px`,
-}));
-
-const Faq = styled("div")(({ theme }) => ({
-  textAlign: `center`,
-  // whiteSpace: `pre-wrap`,
-  fontSynthesis: `none`,
-  color: `rgba(54, 57, 64, 1)`,
-  fontStyle: `normal`,
-  fontFamily: `Poppins`,
-  fontWeight: `600`,
-  fontSize: `24px`,
-  letterSpacing: `0px`,
-  textDecoration: `none`,
-  lineHeight: `32px`,
-  textTransform: `none`,
-  // width: `311px`,
-  height: `31px`,
-  // position: `absolute`,
-  // left: `-1px`,
-  // top: `8px`,
-}));
-
-export default Frame1241;
+export default Question;

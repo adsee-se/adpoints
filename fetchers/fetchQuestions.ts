@@ -1,10 +1,10 @@
 import { Question } from "@/types/question";
 
 export const fetchQuestions = async (
-  user_id: number = 3
+  userId: number = 3
 ): Promise<Question[]> => {
   //3のところをログインユーザーIDに変える
-  const response = await fetch(`http://127.0.0.1:3000/questions/${user_id}`, {
+  const response = await fetch(`http://127.0.0.1:3000/questions/${userId}`, {
     cache: "no-store",
   });
   const data = await response.json();

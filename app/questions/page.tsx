@@ -2,7 +2,7 @@ import QuestionCardParent from "@/components/union/questionCardParent";
 import { fetchQuestions } from "@/fetchers/fetchQuestions";
 import Title from "@/components/atoms/title";
 
-const Question = async () => {
+const Questions = async () => {
   const questions = await fetchQuestions();
 
   return (
@@ -13,4 +13,4 @@ const Question = async () => {
   );
 };
 
-export default Question;
+export default Questions;

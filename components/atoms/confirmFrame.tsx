@@ -1,15 +1,23 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
 
-const ConfirmFrame = () => {
+interface Props {
+  text?: string;
+  height?: string;
+}
+interface Div {
+  height?: string;
+}
+
+const ConfirmFrame = (props: Props) => {
   return (
-    <Frame1>
-      <Q>{`カテゴリー`}</Q>
+    <Frame1 height={props.height}>
+      <Q>{props.text}</Q>
     </Frame1>
   );
 };
 
-const Frame1 = styled("div")({
+const Frame1 = styled("div")<Div>(({ height }) => ({
   backgroundColor: `rgba(238, 238, 238, 1)`,
   borderRadius: `5px`,
   display: `flex`,
@@ -17,13 +25,13 @@ const Frame1 = styled("div")({
   isolation: `isolate`,
   flexDirection: `row`,
   width: "85%",
-  height: `46px`,
+  height: `${height ? height : "46px"}`,
   justifyContent: `flex-start`,
   alignItems: `flex-start`,
   padding: `0px`,
   margin: `10px auto`,
   boxSizing: `border-box`,
-});
+}));
 
 const Q = styled("div")(({ theme }) => ({
   textAlign: `left`,
