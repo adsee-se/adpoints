@@ -8,7 +8,7 @@ interface Items extends Item {
   items: Item[];
 }
 
-const Home = async () => {
+const Login = async () => {
   
   return (
     <>
@@ -17,4 +17,4 @@ const Home = async () => {
   );
 };
 
-export default Home;
+export default Login;

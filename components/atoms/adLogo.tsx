@@ -1,7 +1,24 @@
-import React from 'react';
-import { styled } from '@mui/material/styles';
+import React from "react";
+import { styled } from "@mui/material/styles";
 
-const AdLogo1: any = styled('div')({
+export interface AdLogoProps {
+  className?: any;
+}
+
+function AdLogo(props: AdLogoProps): JSX.Element {
+  return (
+    <AdLogo1 className={props.className}>
+      <Adseed011
+        src={`/assets/images/adlogo_adseed_01_1.png`}
+        loading="lazy"
+        alt={"adseed_01 1"}
+      />
+      <Q>{`adpoints`}</Q>
+    </AdLogo1>
+  );
+}
+
+const AdLogo1: any = styled("div")({
   borderRadius: `0px`,
   display: `flex`,
   position: `relative`,
@@ -11,18 +28,18 @@ const AdLogo1: any = styled('div')({
   alignItems: `flex-start`,
   padding: `0px`,
   boxSizing: `border-box`,
-  height: 'auto',
-  width: 'fit-content',
+  height: "auto",
+  width: "fit-content",
 });
 
-const Adseed011: any = styled('img')({
+const Adseed011: any = styled("img")({
   height: `40px`,
   width: `40px`,
   objectFit: `cover`,
   margin: `0px`,
 });
 
-const Q: any = styled('div')( ({
+const Q: any = styled("div")({
   textAlign: `center`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
@@ -36,23 +53,6 @@ const Q: any = styled('div')( ({
   lineHeight: `32px`,
   textTransform: `none`,
   margin: `0px 0px 0px 8px`,
-}));
-
-export interface AdLogoProps {
-  className?: any;
-};
-
-function AdLogo(props: AdLogoProps): JSX.Element {
-  return (
-    <AdLogo1 className={props.className}>
-        <Adseed011
-          src={`assets/images/adlogo_adseed_01_1.png`}
-          loading="lazy"
-          alt={'adseed_01 1'}
-        />
-        <Q>{`adpoints`}</Q>
-    </AdLogo1>
-  );
-}
+});
 
 export default AdLogo;

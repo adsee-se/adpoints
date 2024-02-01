@@ -5,11 +5,12 @@ import Button from "../../components/atoms/button"
 import Link from 'next/link';
 import { styled } from '@mui/material/styles';
 import InputPullDown from "@/components/atoms/inputPullDown";
+import Title from "@/components/atoms/title";
 
 const Estimate = () => {
   return (
     <EstimateArea>
-      <b>質問内容を見積もる</b>
+     <Title title={"質問内容を見積もる"} fontWeight={'900'} size={'24px'}></Title>
       <Annotation>疑問点を解消するための消費ポイントについてお見積もりを行うことができます。お見積もりは、無料で行うことができます。</Annotation>
       <form>
         <InputPullDown/>

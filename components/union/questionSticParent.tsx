@@ -3,7 +3,7 @@
 import React from "react";
 import QuestionStic from "../atoms/questionStic";
 import { styled } from "@mui/material/styles";
-import { Question } from "@/types/question";
+import { Question } from "../../types/question";
 
 interface Props {
   questions?: Question[];
@@ -20,8 +20,8 @@ function QuestionCardParent(props: Props) {
           point={question.point}
           category={question.category}
           status={question.status}
-          created_at={question.created_at}
-          updated_at={question.updated_at}
+          createdAt={question.createdAt}
+          updatedAt={question.updatedAt}
         ></QuestionStic>
       ))}
     </OuterDiv>

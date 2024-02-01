@@ -5,10 +5,7 @@ import { renderTimeWithinText } from "@/helpers/renderTimeWithinText";
 import { Question } from "@/types/question";
 
 function QuestionStic(props: Question) {
-  const timeWithinText = renderTimeWithinText(
-    props.updated_at,
-    props.created_at
-  );
+  const timeWithinText = renderTimeWithinText(props.updatedAt, props.createdAt);
 
   return (
     <SticFrame status={props.status}>
