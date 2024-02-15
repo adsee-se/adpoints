@@ -11,7 +11,7 @@ export const putQuestions = async (
     },
     body: JSON.stringify(question),
     cache: "no-store",
-    mode: "cors",
+    mode: "no-cors",
   });
 
   const data = await response.json();

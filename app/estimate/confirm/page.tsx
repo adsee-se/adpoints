@@ -12,11 +12,13 @@ const Confirm = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    console.log(event, "event");
 
     const question = {
+      userId: 3, //ログインユーザーIDに変える
       category: "カテゴリーテスト",
       title: "titleテスト",
-      question_text: "質問内容詳細テスト",
+      questioText: "質問内容詳細テスト",
     };
 
     const response = await putQuestions(question);
