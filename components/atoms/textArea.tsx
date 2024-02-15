@@ -17,12 +17,18 @@ interface Props {
   onChange?: (value: string) => void;
   onFocus?: (event: React.FocusEvent<HTMLTextAreaElement>) => void;
   onBlur?: (value: string) => void;
+  readOnly?: boolean;
 }
 
 function TextArea(props: Props) {
 
   return (
-    <TextArea2 className={props.className} placeholder={props.placeholder}>
+    <TextArea2
+      className={props.className}
+      placeholder={props.placeholder}
+      value={props.value}
+      readOnly={props.readOnly}
+    >
     </TextArea2>
   );
 }

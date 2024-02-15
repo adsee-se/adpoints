@@ -33,6 +33,7 @@ interface Props {
   // onChange?: (value: string) => void;
   onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void;
   onBlur?: (value: string) => void;
+  readOnly?: boolean;
 }
 
 function Input(props: Props) {

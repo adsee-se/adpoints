@@ -27,7 +27,7 @@ export interface HamburgerMenuProps {
 }
 
 const HamburgerMenu = (props: HamburgerMenuProps) => {
-  const user = props.session?.user ? props.session.user as User : null;
+  const user = props.session?.user ? (props.session.user as User) : null;
   return (
     <HamburgerMenu1>
       {/* TODO 以下はログインしているユーザーの名前を表示するように修正 */}
@@ -54,7 +54,7 @@ const HamburgerMenu = (props: HamburgerMenuProps) => {
         loading="lazy"
         alt={"Line 3"}
       />
-      <a href="/">
+      <a href="/estimate">
         <Q2>{"質問する"}</Q2>
       </a>
       <Line4
