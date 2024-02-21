@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   description: "adpoints",
 };
 
-export default async function RootLayout ({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -27,7 +27,7 @@ export default async function RootLayout ({
   return (
     <html lang="ja">
       <body className={NotoSansJP.className}>
-        <NextAuthProvider session={session}>
+        <NextAuthProvider session={session} >
           <Header />
           {children}
         </NextAuthProvider>

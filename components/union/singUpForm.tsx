@@ -5,37 +5,37 @@ import { styled } from "@mui/material/styles";
 import Input from "../atoms/input";
 import Button from "../atoms/button";
 import { useRouter } from "next/navigation";
+import { putUsers } from "@/fetchers/putUsers";
 
 export default function LoginForm() {
   const router = useRouter();
   const handelSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const response = await fetch(`/api/auth/register`, {
+      method: "POST",
+      body: JSON.stringify({
+        lastName: formData.get("lastName"),
+        firstName: formData.get("firstName"),
+        lastNameKana: formData.get("lastNameKana"),
+        firstNameKana: formData.get("firstNameKana"),
+        nickName: formData.get("nickName"),
+        email: formData.get("email"),
+        password: formData.get("password"),
+        confirmPassword: formData.get("confirmPassword"),
+      }),
+    });
+    if (response.statusText === "OK") {
+      router.push("/login");
+    }
+    console.log({ response });
+
+    // confirm画面作成中のコード
     // const formData = new FormData(e.currentTarget);
-    // const password = formData.get("password");
-    // const confirmPassword = formData.get("confirmPassword");
-
-    // const response = await fetch(`/api/auth/register`, {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     lastName: formData.get("lastName"),
-    //     firstName: formData.get("firstName"),
-    //     lastNameKana: formData.get("lastNameKana"),
-    //     firstNameKana: formData.get("firstNameKana"),
-    //     nickName: formData.get("nickName"),
-    //     email: formData.get("email"),
-    //     password: formData.get("password"),
-    //     confirmPassword: formData.get("confirmPassword"),
-    //   }),
-    // });
-    // if (response.statusText === "OK") {
-    //   router.push("/login");
-    // }
-    // console.log({ response });
-    router.push("/registerConfirm");
+    // const response = putUsers(formData.get("email"));
+    // router.push("/registerConfirm");
   };
-
-
-  console.log(localStorage, "localStorage");
 
   return (
     <>

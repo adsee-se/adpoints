@@ -1,16 +1,16 @@
 "use client";
 
-import React from "react";
+import React, { FormEvent, useState } from "react";
 import Button from "../atoms/button";
 import Input from "../atoms/input";
 import { styled } from "@mui/material/styles";
 import { signIn } from "next-auth/react";
-import { FormEvent } from "react";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
-  const { data: session, status } = useSession();
+  const [isError, setIsError] = useState(false);
+  // const { data: session, status } = useSession();
   const router = useRouter();
   const handelSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,12 +19,15 @@ export default function LoginForm() {
     const response = await signIn("credentials", {
       email: formData.get("email"),
       password: formData.get("password"),
+      callbackUrl: "/",
       redirect: false,
     });
+    if (response?.ok) {
+      router.push("/");
+    } else {
+      setIsError(true);
+    }
   };
-  if (status === "authenticated") {
-    router.push("/");
-  }
 
   return (
     <>
@@ -45,13 +48,17 @@ export default function LoginForm() {
             width="311px"
             height="48px"
           />
-
           <ForgotPasswordLink href="#">
             ID・パスワードを忘れた方はこちら
           </ForgotPasswordLink>
           <div>
             <Button>ログイン</Button>
           </div>
+          {isError ? (
+            <ErrorDiv>
+              <p>メールアドレスもしくはパスワードが間違っています。</p>
+            </ErrorDiv>
+          ) : undefined}
         </form>
         <SignupText>はじめてご利用の方はこちら</SignupText>
         <Text>はじめてのご利用には会員登録が必要です。</Text>
@@ -74,6 +81,14 @@ const LoginDiv = styled("div")({
   justifyContent: "center",
   alignItems: "center",
   marginTop: 100,
+});
+const ErrorDiv = styled("div")({
+  textAlign: "center",
+  marginTop: 20,
+  marginBottom: 20,
+  color: "red",
+  textDecoration: "none",
+  fontSize: 12,
 });
 const ForgotPasswordLink = styled("a")({
   textAlign: "center",

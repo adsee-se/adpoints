@@ -2,24 +2,7 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
 import { signOut } from "next-auth/react";
-import { Session as NextAuthSession } from "next-auth";
-
-interface ExtendedSession extends NextAuthSession {
-  user?: {
-    name?: string | null | undefined;
-    email?: string | null | undefined;
-    image?: string | null | undefined;
-  };
-}
-
-// 新しいUser型の定義
-interface User {
-  id: number;
-  lastName: string;
-  firstName: string;
-  nickName: string;
-  email: string;
-}
+import { User, ExtendedSession } from "@/types/user";
 
 export interface HamburgerMenuProps {
   isOpen?: boolean;

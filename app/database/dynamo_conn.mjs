@@ -48,14 +48,11 @@ export const CreateUser = async (lastName,
     let putitemResponse = await dynamodbclient.send(putItemCommand);
 
     if (putitemResponse && putitemResponse.$metadata.httpStatusCode === 200) {
-      console.log("成功！！！");
       return true;
     } else {
-      console.log("失敗");
       return false;
     }
   } catch (error) {
-    console.log("エラーはいてますやん");
     console.error(error);
     throw error;
   }
@@ -75,36 +72,9 @@ export const VerifyUser = async (email, password) => {
     let userdata = await dynamodbclient.send(getItemCommand);
     userdata = userdata?.Item ? unmarshall(userdata?.Item) : null;
     const isValid = validPassword(password, userdata.hashstring, userdata.salt);
-    console.log({ userdata });
-    console.log(isValid, "isValid");
-
     return isValid ? userdata : null;
   } catch (error) {
-    console.log("ログインできませんやん");
     console.error(error);
     throw error;
   }
 };
-
-
-// export const fetchUserFromDatabase = async (userId, mail_address) => {
-//   let params = {
-//     TableName: "users",
-//     Key: {
-//       id: { N: userId },
-//       mail_address: { S: mail_address },
-//     },
-//   };
-
-//   try {
-//     const getItemCommand = new GetItemCommand(params);
-//     let userdata = await dynamodbclient.send(getItemCommand);
-//     userdata = userdata?.Item ? unmarshall(userdata?.Item) : null;
-//     return userdata.Item;
-//   } catch (error) {
-//     console.error("Error fetching user data: ", error);
-//     throw error;
-//   }
-// };
-
-

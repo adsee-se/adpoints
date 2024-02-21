@@ -31,9 +31,7 @@ export default function SignUpConfirm() {
     if (response.statusText === "OK") {
       router.push("/login");
     }
-    console.log({ response });
   };
-  // const [lastName, setLastName] = useState("");
   const lastName = localStorage.getItem("lastName");
   const firstName = localStorage.getItem("firstName");
   const lastNameKana = localStorage.getItem("lastNameKana");
@@ -41,8 +39,6 @@ export default function SignUpConfirm() {
   const nickName = localStorage.getItem("nickName");
   const email = localStorage.getItem("email");
   const password = localStorage.getItem("password");
-
-  console.log(localStorage, "localStorage!!!");
 
   return (
     <>

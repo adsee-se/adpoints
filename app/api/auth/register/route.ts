@@ -13,7 +13,6 @@ export async function POST(request: Request) {
       password,
       confirmPassword
     } = await request.json();
-    console.log({ email, password });
     let CreateUserResponse;
     if (email && password && password === confirmPassword) {
       CreateUserResponse = await CreateUser(
@@ -26,7 +25,6 @@ export async function POST(request: Request) {
         password
       );
     }
-    console.log({ CreateUserResponse });
   } catch (e) {
     console.log({ e });
   }

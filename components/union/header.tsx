@@ -14,7 +14,6 @@ const Header = () => {
     setIsOpen(!isOpen);
   };
 
-  console.log(session, "sessionは？？？？");
   return (
     <Header1>
       <Header11>

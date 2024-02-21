@@ -1,6 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import { randomUUID, randomBytes } from "crypto";
-import { VerifyUser, fetchUserFromDatabase } from "@/app/database/dynamo_conn.mjs";
+import { VerifyUser } from "@/app/database/dynamo_conn.mjs";
 
 export const authOptions = {
   /* providers */
@@ -26,7 +26,7 @@ export const authOptions = {
   ],
 
   pages: {
-    signIn: "/auth/signIn",
+    signIn: "/login",
     // error: "/auth/error",
     // signPut: "/auth/signout",
   },
@@ -34,11 +34,7 @@ export const authOptions = {
   /* callbacks */
   callbacks: {
     async jwt({ token, user, session }) {
-      console.log("jwt callback", { token, user, session });
       if (user) {
-        // console.log({token});
-        // console.log(token,'token')
-        // const userData = await fetchUserFromDatabase(user.id,user.address);
         return {
           ...token,
           id: user.id,
@@ -47,19 +43,10 @@ export const authOptions = {
           nickName: user.nickName,
           email: user.mail_address,
         };
-        // return {
-        //   ...token,
-        //   id: userData.id,
-        //   lastName: userData.lastName,
-        //   firstName: userData.firstName,
-        //   nickName: userData.nickName,
-        //   email: userData.mail_address,
-        // };
       }
       return token;
     },
     async session({ session, token, user }) {
-      console.log("session callback", { session, token, user });
       return {
         ...session,
         user: {
@@ -79,12 +66,12 @@ export const authOptions = {
 
   /* jwt */
   jwt: {
-    maxAge: 3 * 24 * 60 * 60, // 3 days
+    maxAge: 1 * 24 * 60 * 60, // 1 days
   },
 
   /* session */
   session: {
-    maxAge: 30 * 24 * 60 * 60, // 30 days
+    maxAge: 2 * 24 * 60 * 60, // 2 days
     updateAge: 24 * 60 * 60, // 24 hours
     generateSessionToken: () => {
       return randomUUID?.() ?? randomBytes(32).toString("hex");
