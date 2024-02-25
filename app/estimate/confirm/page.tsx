@@ -2,27 +2,39 @@
 import Input from "../../../components/atoms/input";
 import TextArea from "../../../components/atoms/textArea";
 import Button from "../../../components/atoms/button";
+import { hashEmailTo10Digits } from "../../utils/user_id_utils.mjs";
 import { putQuestions } from "../../../fetchers/putQuestions";
 import { styled } from "@mui/material/styles";
 import { useRouter } from "next/navigation"; // TODO 一時追加したが不要な可能性あり
+import { useSession } from "next-auth/react";
 
 const Confirm = () => {
   const router = useRouter(); // TODO 一時追加したが不要な可能性あり
-  // const { category, title, question_text } = router.state; // TODO 一時追加したが不要な可能性あり
+  const { data: session } = useSession();
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(event, "event");
+
+    // FormDataオブジェクトを使用してフォームデータを取得
+    const formData = new FormData(event.currentTarget);
+    const userEmail = session?.user ? session.user.email : null;
+    const emailHash = hashEmailTo10Digits(userEmail);
+    const currentTime = Math.floor(Date.now() / 1000).toString();
+    const userId = emailHash + currentTime;
+
+    const category = formData.get("category")?.toString();
+    const title = formData.get("title")?.toString();
+    const questionText = formData.get("questionText")?.toString();
 
     const question = {
-      userId: 3, //ログインユーザーIDに変える
-      category: "カテゴリーテスト",
-      title: "titleテスト",
-      questioText: "質問内容詳細テスト",
+      userId: userId,
+      category: category,
+      title: title,
+      questionText: questionText,
     };
 
     const response = await putQuestions(question);
-    console.log("putQuestionsのレスポンス:", response); // 修正
+    console.log("putQuestionsのレスポンス:", response);
     if (response.statusCode === 200) {
       router.push("/estimate/complete");
     } else {
@@ -37,9 +49,9 @@ const Confirm = () => {
         下記質問内容をご確認頂き、よろしければ送信ボタンを押してください。
       </Annotation>
       <form onSubmit={handleSubmit}>
-        <Input type="text" value={"カテゴリーテスト"} readOnly />
-        <Input type="text" value={"titleテスト"} readOnly />
-        <TextArea value={"質問内容詳細テスト"} readOnly />
+        <Input name="category" type="text" value={localStorage.getItem("category") ?? ''} readOnly />
+        <Input name="title" type="text" value={localStorage.getItem("title") ?? ''} readOnly />
+        <TextArea name="questionText" value={localStorage.getItem("questionText") ?? ''} readOnly />
         <Button type="submit">送信</Button>
       </form>
     </ConfirmArea>

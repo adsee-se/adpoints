@@ -7,6 +7,7 @@ interface Props {
   children?: ReactNode;
   disabled?: boolean;
   value?: string;
+  defaultValue?: string;
   placeholder?: string;
   name?: string;
   maxlength?: number;
@@ -27,6 +28,7 @@ function TextArea(props: Props) {
       className={props.className}
       placeholder={props.placeholder}
       value={props.value}
+      defaultValue={props.defaultValue} 
       readOnly={props.readOnly}
     >
     </TextArea2>

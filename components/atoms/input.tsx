@@ -7,6 +7,7 @@ interface Props {
   children?: ReactNode;
   disabled?: boolean;
   value?: string;
+  defaultValue?: string;
   placeholder?: string;
   name?: string;
   width?: string;
@@ -55,6 +56,7 @@ function Input(props: Props) {
       name={props.name}
       style={style}
       value={props.value}
+      defaultValue={props.defaultValue}
       disabled={props.disabled}
     ></Input2>
   );
