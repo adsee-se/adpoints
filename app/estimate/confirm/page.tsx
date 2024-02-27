@@ -20,14 +20,14 @@ const Confirm = () => {
     const userEmail = session?.user ? session.user.email : null;
     const emailHash = hashEmailTo10Digits(userEmail);
     const currentTime = Math.floor(Date.now() / 1000).toString();
-    const userId = emailHash + currentTime;
+    const questionId = emailHash + currentTime;
 
     const category = formData.get("category")?.toString();
     const title = formData.get("title")?.toString();
     const questionText = formData.get("questionText")?.toString();
 
     const question = {
-      userId: userId,
+      id: questionId,
       category: category,
       title: title,
       questionText: questionText,
