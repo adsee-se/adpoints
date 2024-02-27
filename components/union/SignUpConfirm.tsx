@@ -40,6 +40,8 @@ export default function SignUpConfirm() {
   const email = localStorage.getItem("email");
   const password = localStorage.getItem("password");
 
+  const sessionId = localStorage.getItem("sessionId");
+
   return (
     <>
       <form onSubmit={handelSubmit}>

@@ -1,4 +1,4 @@
-export const putUsers = async (users: any): Promise<void> => {
+export const putUsers = async (users: any): Promise<any> => {
   console.log(users, "users");
   try {
     const response = await fetch(`http://127.0.0.1:3000/usersConfirm`, {
@@ -11,10 +11,9 @@ export const putUsers = async (users: any): Promise<void> => {
       mode: "cors",
     });
 
-    // if (!response.ok) {
-    //   throw new Error(`Failed to save point. Status: ${response.status}`);
-    // }
-    return;
+    const data = await response.json();
+    const sessionId = data.sessionId;
+    return sessionId;
   } catch (error) {
     throw error;
   }

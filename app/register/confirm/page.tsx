@@ -4,7 +4,7 @@ import SignUpConfirm from "@/components/union/SignUpConfirm";
 const Confirm = () => {
   return (
     <>
-        <SignUpConfirm />
+      <SignUpConfirm />
     </>
   );
 };
