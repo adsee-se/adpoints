@@ -12,9 +12,9 @@ export function genPassword(password) {
   };
 }
 
-export function validPassword(password, hashstring, salt) {
+export function validPassword(password, hashString, salt) {
   let hashVerify = crypto
     .pbkdf2Sync(password, salt, 10000, 64, "sha512")
     .toString("hex");
-  return hashstring === hashVerify;
+  return hashString === hashVerify;
 }

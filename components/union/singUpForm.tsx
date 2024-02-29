@@ -1,187 +1,317 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FormEvent } from "react";
 import { styled } from "@mui/material/styles";
 import Input from "../atoms/input";
 import Button from "../atoms/button";
 import { useRouter } from "next/navigation";
-import { putUsers } from "@/fetchers/putUsers";
+import { Modal } from "react-responsive-modal";
+import Title from "@/components/atoms/title";
 
 export default function SignUpForm() {
   const router = useRouter();
   const [error, setError] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [lastName, setLastName] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastNameKana, setLastNameKana] = useState<string>("");
+  const [firstNameKana, setFirstNameKana] = useState<string>("");
+  const [nickName, setNickName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+
+  const onOpenModal = () => {
+    if (password === confirmPassword) {
+      setOpen(true);
+      setError(false);
+    } else {
+      setError(true);
+    }
+  };
+  const onCloseModal = () => {
+    setOpen(false);
+  };
+
   const handelSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    if (nickName === null) {
+      setNickName(lastName + firstName);
+    }
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
     const response = await fetch(`/api/auth/register`, {
       method: "POST",
       body: JSON.stringify({
-        lastName: formData.get("lastName"),
-        firstName: formData.get("firstName"),
-        lastNameKana: formData.get("lastNameKana"),
-        firstNameKana: formData.get("firstNameKana"),
-        nickName: formData.get("nickName"),
-        email: formData.get("email"),
-        password: formData.get("password"),
-        confirmPassword: formData.get("confirmPassword"),
+        lastName: lastName,
+        firstName: firstName,
+        lastNameKana: lastNameKana,
+        firstNameKana: firstNameKana,
+        nickName: nickName,
+        email: email,
+        password: password,
       }),
     });
     if (response.statusText === "OK") {
-      router.push("/login");
+      router.push("/register/complete");
     }
-
-    // const formData = new FormData(e.currentTarget);
-    // const inputData: Record<string, string> = {};
-    // formData.forEach((value, key) => {
-    //   inputData[key] = value.toString();
-    // });
-
-    // const response = await putUsers(inputData);
-    // if (response) {
-    //   console.log(response, "response");
-    //   const existingData = localStorage.getItem("sessionId");
-    //   if (existingData) {
-    //     localStorage.removeItem("sessionId");
-    //   }
-    //   localStorage.setItem("sessionId", JSON.stringify(response));
-    //   router.push("/register/confirm");
-    // } else {
-    //   console.log("エラー");
-    // }
   };
 
   return (
     <>
-      <form onSubmit={handelSubmit}>
-        <FormDiv>
-          <Q>{`新規登録`}</Q>
-          <div>
-            <Q11>{`*必須項目`}</Q11>
-          </div>
-          <FrameTwoInput>
-            <Frame>
-              <Title>
-                <Span1>{`姓`}</Span1>
-                <Span2>{`*`}</Span2>
-              </Title>
-              <Input
-                name="lastName"
-                type="text"
-                placeholder="例）山田"
-                width={"142px"}
-                height={"48"}
-                margin="0"
-              />
-            </Frame>
-            <Frame>
-              <Title>
-                <Span1>{`名`}</Span1>
-                <Span2>{`*`}</Span2>
-              </Title>
-              <Input
-                name="firstName"
-                type="text"
-                placeholder="例）太郎"
-                width={"142px"}
-                height={"48"}
-                margin="0"
-              />
-            </Frame>
-          </FrameTwoInput>
-          <FrameTwoInput>
-            <Frame>
-              <Title>
-                <Span1>{`セイ`}</Span1>
-                <Span2>{`*`}</Span2>
-              </Title>
-              <Input
-                name="lastNameKana"
-                type="text"
-                placeholder="例）ヤマダ"
-                width={"142px"}
-                height={"48"}
-                margin="0"
-              />
-            </Frame>
-            <Frame>
-              <Q4>
-                <Span1>{`メイ`}</Span1>
-                <Span2>{`*`}</Span2>
-              </Q4>
-              <Input
-                name="firstNameKana"
-                type="text"
-                placeholder="例）タロウ"
-                width={"142px"}
-                height={"48"}
-                margin="0"
-              />
-            </Frame>
-          </FrameTwoInput>
-          <FrameInput>
-            <Title>{`ニックネーム`} </Title>
+      <FormDiv>
+        <Title title={"新規登録"} fontWeight={"900"} size={"24px"}></Title>
+        <div>
+          <Q11>{`*必須項目`}</Q11>
+        </div>
+        <FrameTwoInput>
+          <Frame>
+            <SmalTitle>
+              <Span1>{`姓`}</Span1>
+              <Span2>{`*`}</Span2>
+            </SmalTitle>
             <Input
-              name="nickName"
+              // name="lastName"
               type="text"
-              placeholder="例）タロー"
-              width={"311px"}
+              placeholder="例）山田"
+              width={"142px"}
               height={"48"}
               margin="0"
+              onChange={(e) => setLastName(e.target.value)}
             />
-          </FrameInput>
-          <FrameInput>
-            <Title>
-              <Span1>{`メールアドレス`}</Span1>
+          </Frame>
+          <Frame>
+            <SmalTitle>
+              <Span1>{`名`}</Span1>
               <Span2>{`*`}</Span2>
-            </Title>
+            </SmalTitle>
             <Input
-              name="email"
-              type="email"
-              placeholder="例）taro.yamada@test.com"
-              width={"311px"}
+              // name="firstName"
+              type="text"
+              placeholder="例）太郎"
+              width={"142px"}
               height={"48"}
               margin="0"
+              onChange={(e) => setFirstName(e.target.value)}
             />
-          </FrameInput>
-          <FrameInput>
-            <Title>
-              <Span1>{`パスワード`}</Span1>
+          </Frame>
+        </FrameTwoInput>
+        <FrameTwoInput>
+          <Frame>
+            <SmalTitle>
+              <Span1>{`セイ`}</Span1>
               <Span2>{`*`}</Span2>
-            </Title>
+            </SmalTitle>
             <Input
-              name="password"
-              type="password"
-              placeholder="半角英数字で8〜16文字以内"
-              width={"311px"}
+              // name="lastNameKana"
+              type="text"
+              placeholder="例）ヤマダ"
+              width={"142px"}
               height={"48"}
               margin="0"
+              onChange={(e) => setLastNameKana(e.target.value)}
             />
-          </FrameInput>
-          <FrameInput>
-            <Title>
-              <Span1>{`パスワード確認用`}</Span1>
+          </Frame>
+          <Frame>
+            <Q4>
+              <Span1>{`メイ`}</Span1>
               <Span2>{`*`}</Span2>
-            </Title>
+            </Q4>
             <Input
-              name="confirmPassword"
-              type="password"
-              placeholder="パスワードを再入力"
-              width={"311px"}
+              // name="firstNameKana"
+              type="text"
+              placeholder="例）タロウ"
+              width={"142px"}
               height={"48"}
               margin="0"
+              onChange={(e) => setFirstNameKana(e.target.value)}
             />
-          </FrameInput>
-          <FormDiv2>
-            <Q>{`利用規約`}</Q>
-            <Rectangle612></Rectangle612>
-          </FormDiv2>
-          <Group377>
-            <CheckboxOff1 />
-            <Q10>{`利用規約に同意します`}</Q10>
-          </Group377>
-          <Button>次へ</Button>
-        </FormDiv>
-      </form>
+          </Frame>
+        </FrameTwoInput>
+        <FrameInput>
+          <SmalTitle>{`ニックネーム`} </SmalTitle>
+          <Input
+            // name="nickName"
+            type="text"
+            placeholder="例）タロー"
+            width={"311px"}
+            height={"48"}
+            margin="0"
+            onChange={(e) => setNickName(e.target.value)}
+          />
+        </FrameInput>
+        <FrameInput>
+          <SmalTitle>
+            <Span1>{`メールアドレス`}</Span1>
+            <Span2>{`*`}</Span2>
+          </SmalTitle>
+          <Input
+            // name="email"
+            type="email"
+            placeholder="例）taro.yamada@test.com"
+            width={"311px"}
+            height={"48"}
+            margin="0"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </FrameInput>
+        <FrameInput>
+          <SmalTitle>
+            <Span1>{`パスワード`}</Span1>
+            <Span2>{`*`}</Span2>
+          </SmalTitle>
+          <Input
+            // name="password"
+            type="password"
+            placeholder="半角英数字で8〜16文字以内"
+            width={"311px"}
+            height={"48"}
+            margin="0"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </FrameInput>
+        <FrameInput>
+          <SmalTitle>
+            <Span1>{`パスワード確認用`}</Span1>
+            <Span2>{`*`}</Span2>
+          </SmalTitle>
+          <Input
+            // name="confirmPassword"
+            type="password"
+            placeholder="パスワード再入力"
+            width={"311px"}
+            height={"48"}
+            margin="0"
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </FrameInput>
+        <FormDiv2>
+          <Q>{`利用規約`}</Q>
+          <Rectangle612></Rectangle612>
+        </FormDiv2>
+        <Group377>
+          <CheckboxOff1 />
+          <Q10>{`利用規約に同意します`}</Q10>
+        </Group377>
+        {error ? (
+          <ErrorDiv>
+            <p>パスワードを確認してください。</p>
+          </ErrorDiv>
+        ) : undefined}
+        <Button onClick={onOpenModal}>次へ</Button>
+      </FormDiv>
+      <Modal open={open} onClose={onCloseModal} center>
+        <ModalContainer>
+          <ModalFormDiv>
+            <Q11>{`下記の内容を登録します。よろしいですか？`}</Q11>
+            <form onSubmit={handelSubmit}>
+              <FrameTwoInput>
+                <Frame>
+                  <SmalTitle>
+                    <Span1>{`姓`}</Span1>
+                  </SmalTitle>
+                  <Input
+                    name="lastName"
+                    type="text"
+                    width={"142px"}
+                    height={"48"}
+                    margin="0"
+                    value={lastName}
+                    disabled={true}
+                  />
+                </Frame>
+                <Frame>
+                  <SmalTitle>
+                    <Span1>{`名`}</Span1>
+                  </SmalTitle>
+                  <Input
+                    name="firstName"
+                    type="text"
+                    width={"142px"}
+                    height={"48"}
+                    margin="0"
+                    disabled={true}
+                    value={firstName}
+                  />
+                </Frame>
+              </FrameTwoInput>
+              <FrameTwoInput>
+                <Frame>
+                  <SmalTitle>
+                    <Span1>{`セイ`}</Span1>
+                  </SmalTitle>
+                  <Input
+                    name="lastNameKana"
+                    type="text"
+                    width={"142px"}
+                    height={"48"}
+                    margin="0"
+                    disabled={true}
+                    value={lastNameKana}
+                  />
+                </Frame>
+                <Frame>
+                  <Q4>
+                    <Span1>{`メイ`}</Span1>
+                  </Q4>
+                  <Input
+                    name="firstNameKana"
+                    type="text"
+                    width={"142px"}
+                    height={"48"}
+                    margin="0"
+                    disabled={true}
+                    value={firstNameKana}
+                  />
+                </Frame>
+              </FrameTwoInput>
+              <FrameInput>
+                <SmalTitle>{`ニックネーム`} </SmalTitle>
+                <Input
+                  name="nickName"
+                  type="text"
+                  width={"311px"}
+                  height={"48"}
+                  margin="0"
+                  disabled={true}
+                  value={nickName ? nickName : lastName + firstName}
+                  placeholder={nickName ? "" : lastName + firstName + "さん"}
+                />
+              </FrameInput>
+              <FrameInput>
+                <SmalTitle>
+                  <Span1>{`メールアドレス`}</Span1>
+                </SmalTitle>
+                <Input
+                  name="email"
+                  type="email"
+                  width={"311px"}
+                  height={"48"}
+                  margin="0"
+                  disabled={true}
+                  value={email}
+                />
+              </FrameInput>
+              <FrameInput>
+                <SmalTitle>
+                  <Span1>{`パスワード`}</Span1>
+                </SmalTitle>
+                <Input
+                  name="password"
+                  type="password"
+                  width={"311px"}
+                  height={"48"}
+                  margin="0"
+                  disabled={true}
+                  value={password}
+                />
+              </FrameInput>
+              <Button>新規登録する</Button>
+            </form>
+            <Button color="gray" onClick={onCloseModal}>
+              戻る
+            </Button>
+          </ModalFormDiv>
+        </ModalContainer>
+      </Modal>
     </>
   );
 }
@@ -198,6 +328,19 @@ const FormDiv: any = styled("div")({
   boxSizing: `border-box`,
   marginTop: 100,
 });
+
+const ModalFormDiv: any = styled("div")({
+  borderRadius: `0px`,
+  display: `flex`,
+  isolation: `isolate`,
+  flexDirection: `column`,
+  width: "100%",
+  justifyContent: "center",
+  alignItems: "center",
+  padding: `0px`,
+  boxSizing: `border-box`,
+});
+
 const FormDiv2: any = styled("div")({
   borderRadius: `0px`,
   display: `flex`,
@@ -277,7 +420,7 @@ const Span2: any = styled("span")({
   textTransform: `none`,
 });
 
-const Title: any = styled("div")({
+const SmalTitle: any = styled("div")({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
@@ -378,3 +521,19 @@ const Q11: any = styled("div")(({ theme }: any) => ({
   lineHeight: `24px`,
   textTransform: `none`,
 }));
+
+const ModalContainer: any = styled("div")({
+  display: `flex`,
+  alignItems: `center`,
+  justifyContent: `center`,
+  height: `66vh`,
+});
+
+const ErrorDiv = styled("div")({
+  textAlign: "center",
+  marginTop: 20,
+  marginBottom: 20,
+  color: "red",
+  textDecoration: "none",
+  fontSize: 12,
+});

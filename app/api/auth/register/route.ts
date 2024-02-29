@@ -10,11 +10,10 @@ export async function POST(request: Request) {
       firstNameKana,
       nickName,
       email,
-      password,
-      confirmPassword
+      password
     } = await request.json();
     let CreateUserResponse;
-    if (email && password && password === confirmPassword) {
+    if (email && password ) {
       CreateUserResponse = await CreateUser(
         lastName,
         firstName,
