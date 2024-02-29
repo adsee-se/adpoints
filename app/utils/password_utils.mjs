@@ -8,7 +8,7 @@ export function genPassword(password) {
 
   return {
     salt: salt,
-    hashstring: genHash,
+    hashString: genHash,
   };
 }
 

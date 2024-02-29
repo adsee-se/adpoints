@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { CreateUser } from "@/app/database/dynamo_conn.mjs";
+import { CreateUser } from "@/app/database/dynamoDBConnection.mjs";
 
 export async function POST(request: Request) {
   try {

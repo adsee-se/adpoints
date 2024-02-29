@@ -1,6 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import { randomUUID, randomBytes } from "crypto";
-import { VerifyUser } from "@/app/database/dynamo_conn.mjs";
+import { VerifyUser } from "@/app/database/dynamoDBConnection.mjs";
 
 export const authOptions = {
   /* providers */

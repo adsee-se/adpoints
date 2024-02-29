@@ -12,25 +12,42 @@ export default function SignUpForm() {
   const [error, setError] = useState(false);
   const handelSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const formData = new FormData(e.currentTarget);
-    const inputData: Record<string, string> = {};
-    formData.forEach((value, key) => {
-      inputData[key] = value.toString();
+    const response = await fetch(`/api/auth/register`, {
+      method: "POST",
+      body: JSON.stringify({
+        lastName: formData.get("lastName"),
+        firstName: formData.get("firstName"),
+        lastNameKana: formData.get("lastNameKana"),
+        firstNameKana: formData.get("firstNameKana"),
+        nickName: formData.get("nickName"),
+        email: formData.get("email"),
+        password: formData.get("password"),
+        confirmPassword: formData.get("confirmPassword"),
+      }),
     });
-
-    const response = await putUsers(inputData);
-    if (response) {
-      console.log(response, "response");
-      const existingData = localStorage.getItem("sessionId");
-      if (existingData) {
-        localStorage.removeItem("sessionId");
-      }
-      localStorage.setItem("sessionId", JSON.stringify(response));
-      router.push("/register/confirm");
-    } else {
-      console.log("エラー");
+    if (response.statusText === "OK") {
+      router.push("/login");
     }
+
+    // const formData = new FormData(e.currentTarget);
+    // const inputData: Record<string, string> = {};
+    // formData.forEach((value, key) => {
+    //   inputData[key] = value.toString();
+    // });
+
+    // const response = await putUsers(inputData);
+    // if (response) {
+    //   console.log(response, "response");
+    //   const existingData = localStorage.getItem("sessionId");
+    //   if (existingData) {
+    //     localStorage.removeItem("sessionId");
+    //   }
+    //   localStorage.setItem("sessionId", JSON.stringify(response));
+    //   router.push("/register/confirm");
+    // } else {
+    //   console.log("エラー");
+    // }
   };
 
   return (
