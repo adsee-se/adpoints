@@ -2,7 +2,7 @@
 import Input from "../../components/atoms/input";
 import TextArea from "../../components/atoms/textArea";
 import Button from "../../components/atoms/button";
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { styled } from '@mui/material/styles';
 import InputPullDown from "@/components/atoms/inputPullDown";
 import Title from "@/components/atoms/title";
@@ -35,9 +35,9 @@ const Estimate = () => {
       <Title title={"質問内容を見積もる"} fontWeight={'900'} size={'24px'}></Title>
       <Annotation>疑問点を解消するための消費ポイントについてお見積もりを行うことができます。お見積もりは、無料で行うことができます。</Annotation>
       <form onSubmit={handleConfirm}>
-        <InputPullDown defaultValue={localStorage.getItem('category') || ''} />
-        <Input type="text" placeholder="⚪︎⚪︎⚪︎について" defaultValue={localStorage.getItem('title') || ''} />
-        <TextArea placeholder="詳細" defaultValue={localStorage.getItem('questionText') || ''} />
+        <InputPullDown name="category" defaultValue={localStorage.getItem('category') || ''} />
+        <Input type="text" name="title" placeholder="⚪︎⚪︎⚪︎について" defaultValue={localStorage.getItem('title') || ''} />
+        <TextArea name="questionText" placeholder="詳細" defaultValue={localStorage.getItem('questionText') || ''} />
         <Button type="submit">確認画面に進む</Button>
       </form>
     </EstimateArea>

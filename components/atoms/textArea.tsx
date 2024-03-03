@@ -26,9 +26,10 @@ function TextArea(props: Props) {
   return (
     <TextArea2
       className={props.className}
+      name={props.name}
       placeholder={props.placeholder}
       value={props.value}
-      defaultValue={props.defaultValue} 
+      defaultValue={props.defaultValue}
       readOnly={props.readOnly}
     >
     </TextArea2>

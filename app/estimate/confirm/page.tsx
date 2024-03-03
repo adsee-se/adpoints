@@ -17,10 +17,11 @@ const Confirm = () => {
 
     // FormDataオブジェクトを使用してフォームデータを取得
     const formData = new FormData(event.currentTarget);
-    const userEmail = session?.user ? session.user.email : null;
-    const emailHash = hashEmailTo10Digits(userEmail);
+    console.log('session：', session);
+    // TODO questionsテーブルのrangeキーは現在日時+userIdとする。
+    const userId = session?.user?.id ? session.user.id : null;
     const currentTime = Math.floor(Date.now() / 1000).toString();
-    const questionId = emailHash + currentTime;
+    const questionId = currentTime + userId;
 
     const category = formData.get("category")?.toString();
     const title = formData.get("title")?.toString();
@@ -28,6 +29,7 @@ const Confirm = () => {
 
     const question = {
       id: questionId,
+      userId: userId,
       category: category,
       title: title,
       questionText: questionText,
@@ -36,6 +38,8 @@ const Confirm = () => {
     const response = await putQuestions(question);
     console.log("putQuestionsのレスポンス:", response);
     if (response.statusCode === 200) {
+      console.log('完了あああ');
+
       router.push("/estimate/complete");
     } else {
       // エラーハンドリング

@@ -4,13 +4,14 @@ import { styled } from "@mui/material/styles";
 // Propsの型定義を追加
 interface InputPullDownProps {
   defaultValue?: string; // defaultValueをオプショナルのプロパティとして追加
+  name: string; // defaultValueをオプショナルのプロパティとして追加
 }
 
 // Propsを受け取るように関数コンポーネントを修正
 function InputPullDown({ defaultValue }: InputPullDownProps): JSX.Element {
   return (
     // defaultValueをselect要素に渡す
-    <InputPullDownContainer defaultValue={defaultValue} name="estimate-category">
+    <InputPullDownContainer defaultValue={defaultValue} name="category">
       <option value="">カテゴリー(言語)</option>
       <option value="PHP">PHP</option>
       <option value="React">React</option>
