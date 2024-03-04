@@ -3,15 +3,16 @@ import { styled } from "@mui/material/styles";
 
 // Propsの型定義を追加
 interface InputPullDownProps {
-  defaultValue?: string; // defaultValueをオプショナルのプロパティとして追加
-  name: string; // defaultValueをオプショナルのプロパティとして追加
+  value?: string;
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  name: string;
+  disabled?: boolean
 }
 
 // Propsを受け取るように関数コンポーネントを修正
-function InputPullDown({ defaultValue }: InputPullDownProps): JSX.Element {
+function InputPullDown({ value, onChange, name, disabled }: InputPullDownProps): JSX.Element {
   return (
-    // defaultValueをselect要素に渡す
-    <InputPullDownContainer defaultValue={defaultValue} name="category">
+    <InputPullDownContainer value={value} onChange={onChange} name={name} disabled={!!disabled}>
       <option value="">カテゴリー(言語)</option>
       <option value="PHP">PHP</option>
       <option value="React">React</option>
@@ -35,7 +36,8 @@ const InputPullDownContainer: any = styled("select")({
   boxSizing: `border-box`,
   margin: `10px`,
   border: `1px solid rgba(202, 209, 225, 1)`,
-  color: `rgba(149, 161, 187, 1)`,
+  color: `black`,
+  // color: `rgba(149, 161, 187, 1)`,
 });
 
 export default InputPullDown;

@@ -17,7 +17,6 @@ const Confirm = () => {
 
     // FormDataオブジェクトを使用してフォームデータを取得
     const formData = new FormData(event.currentTarget);
-    console.log('session：', session);
     // TODO questionsテーブルのrangeキーは現在日時+userIdとする。
     const userId = session?.user?.id ? session.user.id : null;
     const currentTime = Math.floor(Date.now() / 1000).toString();
@@ -36,9 +35,7 @@ const Confirm = () => {
     };
 
     const response = await putQuestions(question);
-    console.log("putQuestionsのレスポンス:", response);
     if (response.statusCode === 200) {
-      console.log('完了あああ');
 
       router.push("/estimate/complete");
     } else {
@@ -53,8 +50,9 @@ const Confirm = () => {
         下記質問内容をご確認頂き、よろしければ送信ボタンを押してください。
       </Annotation>
       <form onSubmit={handleSubmit}>
-        <Input name="category" type="text" value={localStorage.getItem("category") ?? ''} readOnly />
-        <Input name="title" type="text" value={localStorage.getItem("title") ?? ''} readOnly />
+        {/* TODO widthを直接指定しているが問題ないか確認 */}
+        <Input name="category" value={localStorage.getItem("category") ?? ''} width='311px' readOnly />
+        <Input name="title" value={localStorage.getItem("title") ?? ''} width='311px' readOnly />
         <TextArea name="questionText" value={localStorage.getItem("questionText") ?? ''} readOnly />
         <Button type="submit">送信</Button>
       </form>
