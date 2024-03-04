@@ -51,6 +51,7 @@ const Confirm = () => {
     const response = await putQuestions(question);
     if (response.statusCode === 200) {
 
+      // TODO 完了画面がないのでまだ遷移しない
       router.push("/estimate/complete");
     } else {
       // TODO エラーハンドリング
