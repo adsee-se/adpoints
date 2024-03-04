@@ -9,7 +9,7 @@ export interface ExtendedSession extends NextAuthSession {
 }
 
 export interface User {
-  id: number;
+  id: string;
   lastName: string;
   firstName: string;
   nickName: string;

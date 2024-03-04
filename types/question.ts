@@ -1,6 +1,6 @@
 export type Question = {
   id: string;
-  userId?: string | null; // TODO userMailかuserIdか確認
+  userId?: string | null;
   title?: string;
   questionText: string | null | undefined;
   point?: number | null;
