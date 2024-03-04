@@ -40,8 +40,11 @@ export const authOptions = {
           id: user.id,
           lastName: user.lastName,
           firstName: user.firstName,
+          lastNameKana: user.lastNameKana,
+          firstNameKana: user.firstNameKana,
           nickName: user.nickName,
-          email: user.mail_address,
+          email: user.email,
+          role: user.role,
         };
       }
       return token;
@@ -54,8 +57,11 @@ export const authOptions = {
           id: token.id,
           lastName: token.lastName,
           firstName: token.firstName,
+          lastNameKana: token.lastNameKana,
+          firstNameKana: token.firstNameKana,
           nickName: token.nickName,
           email: token.email,
+          role: token.role,
         },
       };
     },

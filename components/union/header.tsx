@@ -25,7 +25,7 @@ const Header = () => {
         </Container>
       </Header11>
       {/* isOpenがtrueの場合にハンバーガーメニューを表示 */}
-      {isOpen && <HamburgerMenu session={session}/>}
+      {isOpen && <HamburgerMenu session={session} />}
     </Header1>
   );
 };
