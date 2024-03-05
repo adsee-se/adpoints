@@ -1,14 +1,14 @@
 export type Question = {
-  id: string;
+  id?: string;
   userId?: string | null;
   title?: string;
-  questionText: string | null | undefined;
+  questionText?: string | null;
   point?: number | null;
-  category: string | null | undefined;
+  category?: string | null;
   status?: number | null;
   answer?: string | null;
-  createdAt?: string | null;
-  createdBy?: string | null;
-  updatedAt?: string | null;
-  updatedBy?: string | null;
+  createdAt?: Date | string | null;
+  createdBy?: Date | string | null;
+  updatedAt?: Date | string | null;
+  updatedBy?: Date | string | null;
 };

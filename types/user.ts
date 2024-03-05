@@ -2,6 +2,7 @@ import { Session as NextAuthSession } from "next-auth";
 
 export interface ExtendedSession extends NextAuthSession {
   user?: {
+    id?: string | null | undefined;
     name?: string | null | undefined;
     email?: string | null | undefined;
     image?: string | null | undefined;

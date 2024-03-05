@@ -1,6 +1,6 @@
 export const renderTimeWithinText = (
-  updatedAt?: Date | string,
-  createdAt?: Date | string
+  updatedAt?: Date | string | null,
+  createdAt?: Date | string | null
 ) => {
   const returnTimeSecond =
     new Date(updatedAt ? updatedAt : createdAt ? createdAt : "").getTime() /
