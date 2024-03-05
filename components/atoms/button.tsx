@@ -18,7 +18,6 @@ interface Props {
 }
 
 function Button(props: Props) {
-  console.log(props.color);
   return (
     <>
       {props.href && !props.disabled ? (
@@ -33,7 +32,9 @@ function Button(props: Props) {
               height={props.height}
               margin={props.margin}
             >
-              <ButtonDiv color={props.color}>{props.children ? props.children : null}</ButtonDiv>
+              <ButtonDiv color={props.color}>
+                {props.children ? props.children : null}
+              </ButtonDiv>
             </Button2>
           </Link>
         </>
@@ -47,7 +48,9 @@ function Button(props: Props) {
           height={props.height}
           margin={props.margin}
         >
-          <ButtonDiv color={props.color}>{props.children ? props.children : null}</ButtonDiv>
+          <ButtonDiv color={props.color}>
+            {props.children ? props.children : null}
+          </ButtonDiv>
         </Button2>
       )}
     </>
@@ -82,7 +85,9 @@ const Button2 = styled("button")<Props>(({ color, width, height, margin }) => ({
   color: `${
     color === "white" ? "rgba(246, 161, 83, 1)" : "rgba(255, 255, 255, 1)"
   }`,
-  border: `${(color === "white") ? "solid 3px rgba(246, 161, 83, 1)" : ""}`,
+  border: `${
+    color === "white" ? "solid 3px rgba(246, 161, 83, 1)" : "transparent"
+  }`,
   fontStyle: `normal`,
   fontFamily: `Rubik`,
   fontWeight: `500`,
