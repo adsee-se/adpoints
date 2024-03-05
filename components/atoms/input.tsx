@@ -7,6 +7,7 @@ interface Props {
   children?: ReactNode;
   disabled?: boolean;
   value?: string;
+  defaultValue?: string;
   placeholder?: string;
   name?: string;
   width?: string;
@@ -15,7 +16,7 @@ interface Props {
   maxlength?: number;
   minlength?: number;
   form?: any;
-  type:
+  type?:
     | "text"
     | "password"
     | "number"
@@ -37,6 +38,12 @@ interface Props {
 }
 
 function Input(props: Props) {
+  const { readOnly } = props; // readOnlyプロパティを抽出
+  const readOnlyStyle = readOnly ? {
+    color: 'gray',
+    cursor: 'not-allowed',
+  } : {};
+
   const style = {
     width: props.width ? props.width : "100%",
     height: props.height ? props.height : "100%",
@@ -44,6 +51,7 @@ function Input(props: Props) {
     border: props.disabled
       ? `1px solid rgba(202, 209, 225, 1)`
       : `1px solid rgba(246, 161, 83, 1)`,
+    ...readOnlyStyle, // readOnlyの場合のスタイルを適用
   };
   return (
     <Input2
@@ -55,7 +63,9 @@ function Input(props: Props) {
       name={props.name}
       style={style}
       value={props.value}
+      defaultValue={props.defaultValue}
       disabled={props.disabled}
+      readOnly={props.readOnly}
     ></Input2>
   );
 }
@@ -66,6 +76,7 @@ const Input2 = styled("input")({
   position: `relative`,
   isolation: `isolate`,
   flexDirection: `row`,
+  width: '311px',
   height: `46px`,
   justifyContent: `flex-start`,
   alignItems: `flex-start`,

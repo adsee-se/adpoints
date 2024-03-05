@@ -14,10 +14,8 @@ export const putQuestions = async (
     mode: "no-cors",
   });
 
-  const data = await response.json();
-
   return {
     statusCode: response.status,
-    body: data,
+    body: '',
   };
 };
