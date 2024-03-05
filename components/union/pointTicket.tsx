@@ -28,7 +28,7 @@ function PointTicket(props: Point) {
         <ModalText>
           {props.value}pを{`¥${props.price?.toLocaleString()}`}で購入する
         </ModalText>
-        <Button>購入する</Button>
+        <Button color="orange">購入する</Button>
       </Modal>
     </PointTicketFrame>
   );

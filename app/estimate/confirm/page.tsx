@@ -69,7 +69,7 @@ const Confirm = () => {
         <Input name="category" value={category} width='311px' readOnly />
         <Input name="title" value={title} width='311px' readOnly />
         <TextArea name="questionText" value={questionText} readOnly />
-        <Button type="submit">送信</Button>
+        <Button type="submit" color="orange">送信</Button>
       </form>
     </ConfirmArea>
   );

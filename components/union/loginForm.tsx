@@ -52,7 +52,7 @@ export default function LoginForm() {
             ID・パスワードを忘れた方はこちら
           </ForgotPasswordLink>
           <div>
-            <Button>ログイン</Button>
+            <Button color="orange">ログイン</Button>
           </div>
           {isError ? (
             <ErrorDiv>
@@ -62,7 +62,7 @@ export default function LoginForm() {
         </form>
         <SignupText>はじめてご利用の方はこちら</SignupText>
         <Text>はじめてのご利用には会員登録が必要です。</Text>
-        <Button href={`/register`}>新規登録</Button>
+        <Button href={`/register`} color="orange">新規登録</Button>
       </LoginDiv>
     </>
   );

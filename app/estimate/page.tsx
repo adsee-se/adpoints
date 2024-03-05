@@ -56,7 +56,7 @@ const Estimate = () => {
         {/* TODO widthを直接指定しているが問題ないか確認 */}
         <Input type="text" name="title" placeholder="⚪︎⚪︎⚪︎について" width='311px' defaultValue={title} />
         <TextArea name="questionText" placeholder="詳細" defaultValue={questionText} />
-        <Button type="submit">確認画面に進む</Button>
+        <Button type="submit" color="orange">確認画面に進む</Button>
       </form>
     </EstimateArea>
   );

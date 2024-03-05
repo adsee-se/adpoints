@@ -196,7 +196,7 @@ export default function SignUpForm() {
             <p>パスワードを確認してください。</p>
           </ErrorDiv>
         ) : undefined}
-        <Button onClick={onOpenModal}>次へ</Button>
+        <Button color="orange" onClick={onOpenModal}>次へ</Button>
       </FormDiv>
       <Modal open={open} onClose={onCloseModal} center>
         <ModalContainer>
@@ -304,7 +304,7 @@ export default function SignUpForm() {
                   value={password}
                 />
               </FrameInput>
-              <Button>新規登録する</Button>
+              <Button color="orange">新規登録する</Button>
             </form>
             <Button color="gray" onClick={onCloseModal}>
               戻る
@@ -326,7 +326,6 @@ const FormDiv: any = styled("div")({
   alignItems: "center",
   padding: `0px`,
   boxSizing: `border-box`,
-  marginTop: 100,
 });
 
 const ModalFormDiv: any = styled("div")({

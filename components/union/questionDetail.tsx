@@ -30,8 +30,8 @@ const QuestionDetail = async (props: Props) => {
       </Group388>
       <TheHarderYouWork>{`注文期限○/○まで`}</TheHarderYouWork>
       <ButtonDiv>
-        <Button size="middle">依頼する</Button>
-        <Button size="middle" color="sub">
+        <Button size="middle" color="orange">依頼する</Button>
+        <Button size="middle" color="gray">
           戻る
         </Button>
       </ButtonDiv>
