@@ -14,7 +14,6 @@ interface Props {
 
 function QuestionCardParent(props: Props) {
   const { data: session } = useSession();
-  console.log(session, "session");
   const user = session?.user as User;
   const [questions, setQuestions] = useState<Question[]>();
 
@@ -25,7 +24,6 @@ function QuestionCardParent(props: Props) {
 
   useEffect(() => {
     if (user) {
-      console.log(user, "userEffect");
       getData(user?.id);
     }
   }, [user]);
