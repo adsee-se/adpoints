@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 
 interface Props {
-  text?: string;
+  text?: string | null;
   height?: string;
 }
 interface Div {

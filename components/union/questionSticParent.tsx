@@ -20,11 +20,11 @@ function QuestionCardParent(props: Props) {
 
   const getData = async (id: string) => {
     const data = await fetchQuestions(id);
-    setQuestions(data);
+    await setQuestions(data);
   };
 
   useEffect(() => {
-    if (user && !questions) {
+    if (user) {
       console.log(user, "userEffect");
       getData(user?.id);
     }
@@ -42,6 +42,7 @@ function QuestionCardParent(props: Props) {
           status={question.status}
           createdAt={question.createdAt}
           updatedAt={question.updatedAt}
+          userId={user?.id}
         ></QuestionStic>
       ))}
     </OuterDiv>

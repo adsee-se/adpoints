@@ -7,7 +7,11 @@ import { renderTimeWithinText } from "@/helpers/renderTimeWithinText";
 import { Question } from "@/types/question";
 import { useRouter } from "next/navigation";
 
-function QuestionCard(props: Question) {
+interface Props extends Question{
+  userId?: string
+} 
+
+function QuestionCard(props: Props) {
   const timeWithinText = renderTimeWithinText(
     props?.updatedAt,
     props?.createdAt
@@ -15,7 +19,7 @@ function QuestionCard(props: Question) {
   const router = useRouter();
   return (
     <RouterButton
-      onClick={() => router.push(`/questions/${props?.id}?userId=3`)} //ログインuserIdに修正
+      onClick={() => router.push(`/questions/${props?.id}?userId=${props.userId}`)}
     >
       <OuterFrame status={props?.status} key={props?.id}>
         <TimeCounter>{timeWithinText}</TimeCounter>

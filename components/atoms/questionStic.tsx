@@ -3,15 +3,22 @@ import { styled } from "@mui/material/styles";
 import { YET_REPLY, ALREDY_REPLY, OTHER } from "@/helpers/const";
 import { renderTimeWithinText } from "@/helpers/renderTimeWithinText";
 import { Question } from "@/types/question";
+import Link from "next/link";
+
+interface Props extends Question{
+  userId?: string
+} 
 
 function QuestionStic(props: Question) {
   const timeWithinText = renderTimeWithinText(props.updatedAt, props.createdAt);
 
   return (
-    <SticFrame status={props.status}>
-      <SticTitle>{props.title}</SticTitle>
-      <TimeDisplay>{timeWithinText}</TimeDisplay>
-    </SticFrame>
+    <Link href={`/questions/${props?.id}?userId=${props.userId}`}>
+      <SticFrame status={props.status}>
+        <SticTitle>{props.title}</SticTitle>
+        <TimeDisplay>{timeWithinText}</TimeDisplay>
+      </SticFrame>
+    </Link>
   );
 }
 
