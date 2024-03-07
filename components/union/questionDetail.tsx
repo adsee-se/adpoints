@@ -10,8 +10,7 @@ interface Props {
   question: Question;
 }
 
-const QuestionDetail = async (props: Props) => {
-  console.log(props.question, "question");
+const QuestionDetail = (props: Props) => {
   return (
     <OuterDiv>
       <SubText>
@@ -30,7 +29,9 @@ const QuestionDetail = async (props: Props) => {
       </Group388>
       <TheHarderYouWork>{`注文期限○/○まで`}</TheHarderYouWork>
       <ButtonDiv>
-        <Button size="middle" color="orange">依頼する</Button>
+        <Button size="middle" color="orange">
+          依頼する
+        </Button>
         <Button size="middle" color="gray">
           戻る
         </Button>

@@ -12,13 +12,14 @@ interface Props {
 function PointTicketParent(props: Props) {
   return (
     <OuterDiv>
-      {props.points.map((point) => (
+      {props.points.map((point, index) => (
         <PointTicket
           id={point.id}
           value={point.value}
           price={point.price}
           createdAt={point.createdAt}
           updatedAt={point.updatedAt}
+          key={index}
         ></PointTicket>
       ))}
       {props.points.length % 2 === 1 && <SpacerDiv />}

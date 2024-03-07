@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 
 const IconsBurgerLine = ({
   onBurgerIconClick,
@@ -23,7 +24,7 @@ const IconsBurgerLine = ({
     }}
     onClick={onBurgerIconClick}
   >
-    <img
+    <Image
       style={{
         height: "10.67px",
         width: "21.33px",

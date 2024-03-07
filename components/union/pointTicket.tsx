@@ -5,11 +5,15 @@ import { Modal } from "react-responsive-modal";
 import Button from "../atoms/button";
 import "src/css/modal-styling.css";
 
-function PointTicket(props: Point) {
+interface Props extends Point {
+  key?: number;
+}
+
+function PointTicket(props: Props) {
   const [open, setOpen] = useState(false);
 
   return (
-    <PointTicketFrame>
+    <PointTicketFrame key={props.key}>
       <button onClick={() => setOpen(true)}>
         <PointLine>
           <PointValue>{props.value}</PointValue>
