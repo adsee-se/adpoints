@@ -2,30 +2,30 @@
 import Input from "../../../components/atoms/input";
 import TextArea from "../../../components/atoms/textArea";
 import Button from "../../../components/atoms/button";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { putQuestions } from "../../../fetchers/putQuestions";
 import { styled } from "@mui/material/styles";
 import { useRouter } from "next/navigation"; // TODO 一時追加したが不要な可能性あり
 import { useSession } from "next-auth/react";
 import { User } from "@/types/user";
-import { getCurrentDateTimeFormatted } from '../../utils/date_utils';
+import { getCurrentDateTimeFormatted } from "../../utils/date_utils";
 
 const Confirm = () => {
   const router = useRouter(); // TODO 一時追加したが不要な可能性あり
   const { data: session } = useSession();
-  const user = session?.user ? (session.user as User) : null;
+  const user = session?.user;
   const userId = user?.id ?? null;
 
   // 状態を追加してlocalStorageからの値を保持
-  const [category, setCategory] = useState('');
-  const [title, setTitle] = useState('');
-  const [questionText, setQuestionText] = useState('');
+  const [category, setCategory] = useState("");
+  const [title, setTitle] = useState("");
+  const [questionText, setQuestionText] = useState("");
 
   // コンポーネントがマウントされた後にlocalStorageから値を読み込む
   useEffect(() => {
-    setCategory(localStorage.getItem("category") ?? '');
-    setTitle(localStorage.getItem("title") ?? '');
-    setQuestionText(localStorage.getItem("questionText") ?? '');
+    setCategory(localStorage.getItem("category") ?? "");
+    setTitle(localStorage.getItem("title") ?? "");
+    setQuestionText(localStorage.getItem("questionText") ?? "");
   }, []);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -34,7 +34,7 @@ const Confirm = () => {
     // FormDataオブジェクトを使用してフォームデータを取得
     const formData = new FormData(event.currentTarget);
     const formattedCurrentDateTime = getCurrentDateTimeFormatted();
-    const questionId = formattedCurrentDateTime + '_' + userId;
+    const questionId = formattedCurrentDateTime + "_" + userId;
 
     const category = formData.get("category")?.toString();
     const title = formData.get("title")?.toString();
@@ -50,7 +50,6 @@ const Confirm = () => {
 
     const response = await putQuestions(question);
     if (response.statusCode === 200) {
-
       // TODO 完了画面がないのでまだ遷移しない
       router.push("/estimate/complete");
     } else {
@@ -66,8 +65,8 @@ const Confirm = () => {
       </Annotation>
       <form onSubmit={handleSubmit}>
         {/* TODO widthを直接指定しているが問題ないか確認 */}
-        <Input name="category" value={category} width='311px' readOnly />
-        <Input name="title" value={title} width='311px' readOnly />
+        <Input name="category" value={category} width="311px" readOnly />
+        <Input name="title" value={title} width="311px" readOnly />
         <TextArea name="questionText" value={questionText} readOnly />
         <Button color="orange">送信</Button>
       </form>

@@ -1,36 +1,19 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
-import { fetchQuestions } from "@/fetchers/fetchQuestions";
+import React from "react";
 import QuestionStic from "../atoms/questionStic";
 import { styled } from "@mui/material/styles";
 import { Question } from "../../types/question";
-import { User, ExtendedSession } from "@/types/user";
 
 interface Props {
   questions?: Question[];
+  userId?: string | null;
 }
 
 function QuestionCardParent(props: Props) {
-  const { data: session } = useSession();
-  const user = session?.user as User;
-  const [questions, setQuestions] = useState<Question[]>();
-
-  const getData = async (id: string) => {
-    const data = await fetchQuestions(id);
-    await setQuestions(data);
-  };
-
-  useEffect(() => {
-    if (user) {
-      getData(user?.id);
-    }
-  }, [user]);
-
   return (
     <OuterDiv>
-      {questions?.map((question) => (
+      {props?.questions?.map((question) => (
         <QuestionStic
           key={question.id}
           id={question.id}
@@ -40,7 +23,7 @@ function QuestionCardParent(props: Props) {
           status={question.status}
           createdAt={question.createdAt}
           updatedAt={question.updatedAt}
-          userId={user?.id}
+          userId={props.userId}
         ></QuestionStic>
       ))}
     </OuterDiv>

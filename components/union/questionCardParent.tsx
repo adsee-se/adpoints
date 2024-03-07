@@ -10,27 +10,14 @@ import { User, ExtendedSession } from "@/types/user";
 
 interface Props {
   questions?: Question[];
+  userId?: string;
 }
 
 function QuestionCardParent(props: Props) {
-  const { data: session } = useSession();
-  const user = session?.user as User;
-  const [questions, setQuestions] = useState<Question[]>();
-
-  const getData = async (id: string) => {
-    const data = await fetchQuestions(id);
-    await setQuestions(data);
-  };
-
-  useEffect(() => {
-    if (user && !questions) {
-    getData(user?.id);
-    }
-  }, [user]);
 
   return (
     <OuterDiv>
-      {questions?.map((question) => (
+      {props.questions?.map((question) => (
         <QuestionCard
           key={question.id}
           id={question.id}
@@ -40,7 +27,7 @@ function QuestionCardParent(props: Props) {
           status={question.status}
           createdAt={question.createdAt}
           updatedAt={question.updatedAt}
-          userId={user?.id}
+          userId={props.userId}
         ></QuestionCard>
       ))}
     </OuterDiv>

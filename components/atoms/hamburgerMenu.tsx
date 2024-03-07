@@ -10,7 +10,7 @@ export interface HamburgerMenuProps {
 }
 
 const HamburgerMenu = (props: HamburgerMenuProps) => {
-  const user = props.session?.user ? (props.session.user as User) : null;
+  const user = props.session?.user;
   return (
     <HamburgerMenu1>
       {/* TODO 以下はログインしているユーザーの名前を表示するように修正 */}

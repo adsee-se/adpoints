@@ -50,10 +50,10 @@ export const authOptions = {
       return token;
     },
     async session({ session, token, user }) {
-      return {
-        ...session,
-        user: {
-          ...session.user,
+      if (token) {
+        return {
+         ...session, 
+         user :{
           id: token.id,
           lastName: token.lastName,
           firstName: token.firstName,
@@ -62,8 +62,10 @@ export const authOptions = {
           nickName: token.nickName,
           email: token.email,
           role: token.role,
-        },
-      };
+         }
+        }
+      }
+      return session;
     },
   },
 
