@@ -1,4 +1,5 @@
 export type LambdaApiResponse = {
   statusCode: number;
-  body: string;
+  headers?: any;
+  body?: any;
 };

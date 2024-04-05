@@ -37,7 +37,7 @@ const OuterDiv = styled("div")({
   position: `relative`,
   isolation: `isolate`,
   flexDirection: `row`,
-  width: "80%",
+  width: "77%",
   height: `165.93px`,
   justifyContent: `flex-start`,
   alignItems: `flex-start`,

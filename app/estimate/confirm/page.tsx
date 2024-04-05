@@ -49,6 +49,7 @@ const Confirm = () => {
     };
 
     const response = await putQuestions(question);
+    console.log(response.statusCode, "code");
     if (response.statusCode === 200) {
       // TODO 完了画面がないのでまだ遷移しない
       router.push("/estimate/complete");
@@ -69,6 +70,9 @@ const Confirm = () => {
         <Input name="title" value={title} width="311px" readOnly />
         <TextArea name="questionText" value={questionText} readOnly />
         <Button color="orange">送信</Button>
+        <Button color="white" type="button" href="/estimate">
+          戻る
+        </Button>
       </form>
     </ConfirmArea>
   );

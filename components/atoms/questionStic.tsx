@@ -5,9 +5,9 @@ import { renderTimeWithinText } from "@/helpers/renderTimeWithinText";
 import { Question } from "@/types/question";
 import Link from "next/link";
 
-interface Props extends Question{
-  userId?: string
-} 
+interface Props extends Question {
+  userId?: string;
+}
 
 function QuestionStic(props: Question) {
   const timeWithinText = renderTimeWithinText(props.updatedAt, props.createdAt);
@@ -35,6 +35,7 @@ const SticFrame = styled("div")<Question>(({ status }) => ({
       : "rgba(172, 172, 179, 1)"
   }`,
   borderRadius: `10px`,
+  backgroundColor: `white`,
 }));
 
 const SticTitle = styled("div")({

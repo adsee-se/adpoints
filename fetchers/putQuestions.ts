@@ -6,16 +6,15 @@ export const putQuestions = async (
 ): Promise<LambdaApiResponse> => {
   const response = await fetch(`http://127.0.0.1:3000/question`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: JSON.stringify(question),
     cache: "no-store",
-    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
   });
 
   return {
     statusCode: response.status,
-    body: '',
   };
 };
