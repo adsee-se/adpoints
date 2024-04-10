@@ -70,7 +70,7 @@ const GuideText = styled("div")({
   width: `311px`,
   height: `24.58px`,
   position: `absolute`,
-  left: `6px`,
+  left: `0px`,
   top: `94px`,
 });
 
@@ -105,7 +105,7 @@ const Faq = styled("div")({
   width: `120px`,
   height: `32.78px`,
   position: `absolute`,
-  left: `0px`,
+  left: `-10px`,
   top: `0px`,
 });
 

@@ -4,6 +4,7 @@ import React, { ReactNode } from "react";
 import { Question } from "../../types/question";
 import { styled } from "@mui/material/styles";
 import QuestionSticParent from "@/components/union/questionSticParent";
+import QuestionsIndexLink from "../union/QuestionsIndexLink";
 
 interface Props {
   questions?: Question[];
@@ -16,6 +17,7 @@ function RightOrangeBackGround(props: Props) {
       <OrangeDiv>
         <SubTitle>返信BOX</SubTitle>
         <QuestionSticParent questions={props.questions} userId={props.userId} />
+        <QuestionsIndexLink />
       </OrangeDiv>
     </>
   );
