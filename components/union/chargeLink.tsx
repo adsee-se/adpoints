@@ -4,11 +4,11 @@ import React from "react";
 import Link from "next/link";
 import { styled } from "@mui/material/styles";
 
-interface Group387Props {
+interface Props {
   className?: any;
 }
 
-function ChargeLink(props: Group387Props): JSX.Element {
+function ChargeLink(props: Props): JSX.Element {
   return (
     <Link href={"/charge"}>
       <div>
