@@ -2,15 +2,18 @@
 
 import React from "react";
 import { styled } from "@mui/material/styles";
+import Link from "next/link";
 
 function QuestionsIndexLink() {
   return (
-    <Div>
-      <Div2>返信BOX一覧</Div2>
-      <Div3>
-        <Img loading="lazy" src={"assets/images/linkIcon.png"} />
-      </Div3>
-    </Div>
+    <Link href={`/questions`}>
+      <Div>
+        <Div2>返信BOX一覧</Div2>
+        <Div3>
+          <Img loading="lazy" src={"assets/images/linkIcon.png"} />
+        </Div3>
+      </Div>
+    </Link>
   );
 }
 
@@ -23,14 +26,14 @@ const Div = styled("div")(() => ({
   display: `flex`,
   gap: `5px`,
   padding: `0 10px 0 13px`,
-  margin: `0 auto`
+  margin: `0 auto`,
 }));
 
 const Div2 = styled("div")(() => ({
   color: `#fff`,
   letterSpacing: `0.28px`,
   font: `500 14px/24px Noto Sans JP, sans-serif`,
-  margin: `auto`
+  margin: `auto`,
 }));
 
 const Div3 = styled("div")(() => ({
