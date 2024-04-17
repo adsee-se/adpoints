@@ -5,6 +5,7 @@ import { styled } from "@mui/material/styles";
 import Button from "@/components/atoms/button";
 import ConfirmFrame from "@/components/atoms/confirmFrame";
 import { Question } from "@/types/question";
+import Link from "next/link";
 
 interface Props {
   question: Question;
@@ -32,9 +33,11 @@ const QuestionDetail = (props: Props) => {
         <Button size="middle" color="orange">
           依頼する
         </Button>
-        <Button size="middle" color="gray">
-          戻る
-        </Button>
+        <Link href={`/questions`}>
+          <Button size="middle" color="white">
+            一覧に戻る
+          </Button>
+        </Link>
       </ButtonDiv>
     </OuterDiv>
   );
