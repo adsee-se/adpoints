@@ -17,10 +17,10 @@ const Home = async () => {
   return (
     <>
       <main>
+        <ChargeLink />
         <Link href={"/estimate"}>
           <EstimateLink />
         </Link>
-        <ChargeLink />
         <RightOrangeBackGround questions={sliceQuestions} userId={user?.id} />
       </main>
     </>
